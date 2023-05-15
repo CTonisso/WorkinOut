@@ -99,6 +99,7 @@ class LoginViewController: UIViewController {
     
     private let googleSignInButon: GIDSignInButton = {
         let view = GIDSignInButton()
+        view.addTarget(self, action: #selector(loginWithGoogle), for: .touchUpInside)
         return view
     }()
     
@@ -120,7 +121,11 @@ class LoginViewController: UIViewController {
     
     @objc func login() {
         guard let email = emailTextField.text, let password = passwordTextField.text else { return }
-        viewModel.loginUserWith(.email, email: email, password: password)
+        viewModel.loginUserWithEmail(email: email, password: password)
+    }
+
+    @objc func loginWithGoogle() {
+        viewModel.loginUserWithGoogle(viewController: self)
     }
     
     @objc func register() {

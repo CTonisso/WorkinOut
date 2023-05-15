@@ -4,5 +4,16 @@
 <dict>
 	<key>UIMainStoryboardFile</key>
 	<string>LaunchScreen</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.652363759428-ihroi8lf1pp1410j76inhe0s96hpmrrn</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

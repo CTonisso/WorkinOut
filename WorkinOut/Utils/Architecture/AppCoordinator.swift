@@ -34,4 +34,9 @@ class AppCoordinator: Coordinator {
         // TODO
     }
 
+    func viewController() -> UIViewController {
+        guard let viewController = navigationController.topViewController else { return navigationController.viewControllers[0] }
+        return viewController
+    }
+
 }
