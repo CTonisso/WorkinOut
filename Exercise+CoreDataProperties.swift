@@ -20,7 +20,24 @@ extension Exercise {
     @NSManaged public var image: URL?
     @NSManaged public var name: String?
     @NSManaged public var notes: String?
-    @NSManaged public var workout: Workout?
+    @NSManaged public var workout: NSSet?
+
+}
+
+// MARK: Generated accessors for workout
+extension Exercise {
+
+    @objc(addWorkoutObject:)
+    @NSManaged public func addToWorkout(_ value: Workout)
+
+    @objc(removeWorkoutObject:)
+    @NSManaged public func removeFromWorkout(_ value: Workout)
+
+    @objc(addWorkout:)
+    @NSManaged public func addToWorkout(_ values: NSSet)
+
+    @objc(removeWorkout:)
+    @NSManaged public func removeFromWorkout(_ values: NSSet)
 
 }
 
