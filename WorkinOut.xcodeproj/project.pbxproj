@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4807281F2A12504200C31B04 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4807281B2A12504200C31B04 /* Exercise+CoreDataClass.swift */; };
+		480728202A12504200C31B04 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4807281C2A12504200C31B04 /* Exercise+CoreDataProperties.swift */; };
+		480728212A12504200C31B04 /* Workout+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4807281D2A12504200C31B04 /* Workout+CoreDataClass.swift */; };
+		480728222A12504200C31B04 /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4807281E2A12504200C31B04 /* Workout+CoreDataProperties.swift */; };
 		48C1B0492A107C1600904969 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B0482A107C1600904969 /* AppDelegate.swift */; };
 		48C1B04B2A107C1600904969 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B04A2A107C1600904969 /* SceneDelegate.swift */; };
 		48C1B04D2A107C1600904969 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B04C2A107C1600904969 /* ViewController.swift */; };
@@ -37,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4807281B2A12504200C31B04 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4807281C2A12504200C31B04 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4807281D2A12504200C31B04 /* Workout+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4807281E2A12504200C31B04 /* Workout+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		48C1B0452A107C1600904969 /* WorkinOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkinOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C1B0482A107C1600904969 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48C1B04A2A107C1600904969 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +109,7 @@
 		48C1B0472A107C1600904969 /* WorkinOut */ = {
 			isa = PBXGroup;
 			children = (
+				48C1B0912A124CF200904969 /* CoreData */,
 				48C1B0482A107C1600904969 /* AppDelegate.swift */,
 				48C1B04A2A107C1600904969 /* SceneDelegate.swift */,
 				48C1B04C2A107C1600904969 /* ViewController.swift */,
@@ -108,7 +117,6 @@
 				48C1B0542A107C1A00904969 /* Assets.xcassets */,
 				48C1B0562A107C1A00904969 /* LaunchScreen.storyboard */,
 				48C1B0592A107C1A00904969 /* Info.plist */,
-				48C1B0512A107C1600904969 /* WorkinOut.xcdatamodeld */,
 			);
 			path = WorkinOut;
 			sourceTree = "<group>";
@@ -128,6 +136,18 @@
 				48C1B06E2A107C1A00904969 /* WorkinOutUITestsLaunchTests.swift */,
 			);
 			path = WorkinOutUITests;
+			sourceTree = "<group>";
+		};
+		48C1B0912A124CF200904969 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				4807281B2A12504200C31B04 /* Exercise+CoreDataClass.swift */,
+				4807281C2A12504200C31B04 /* Exercise+CoreDataProperties.swift */,
+				4807281D2A12504200C31B04 /* Workout+CoreDataClass.swift */,
+				4807281E2A12504200C31B04 /* Workout+CoreDataProperties.swift */,
+				48C1B0512A107C1600904969 /* WorkinOut.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,10 +281,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				480728212A12504200C31B04 /* Workout+CoreDataClass.swift in Sources */,
+				4807281F2A12504200C31B04 /* Exercise+CoreDataClass.swift in Sources */,
+				480728222A12504200C31B04 /* Workout+CoreDataProperties.swift in Sources */,
 				48C1B0532A107C1600904969 /* WorkinOut.xcdatamodeld in Sources */,
 				48C1B04D2A107C1600904969 /* ViewController.swift in Sources */,
 				48C1B0492A107C1600904969 /* AppDelegate.swift in Sources */,
 				48C1B04B2A107C1600904969 /* SceneDelegate.swift in Sources */,
+				480728202A12504200C31B04 /* Exercise+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
