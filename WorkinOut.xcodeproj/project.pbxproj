@@ -27,6 +27,8 @@
 		480728582A12A92800C31B04 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480728572A12A92800C31B04 /* ViewModel.swift */; };
 		4807285B2A12CE3A00C31B04 /* WOTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4807285A2A12CE3A00C31B04 /* WOTextField.swift */; };
 		4807285F2A12DA7200C31B04 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4807285E2A12DA7200C31B04 /* FirebaseAuth */; };
+		480728622A12E1C800C31B04 /* WorkoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480728612A12E1C800C31B04 /* WorkoutsViewController.swift */; };
+		480728642A12E1D800C31B04 /* WorkoutsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480728632A12E1D800C31B04 /* WorkoutsViewModel.swift */; };
 		48C1B0492A107C1600904969 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B0482A107C1600904969 /* AppDelegate.swift */; };
 		48C1B04D2A107C1600904969 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B04C2A107C1600904969 /* ViewController.swift */; };
 		48C1B0532A107C1600904969 /* WorkinOut.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B0512A107C1600904969 /* WorkinOut.xcdatamodeld */; };
@@ -68,6 +70,8 @@
 		480728552A12A66800C31B04 /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
 		480728572A12A92800C31B04 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		4807285A2A12CE3A00C31B04 /* WOTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WOTextField.swift; sourceTree = "<group>"; };
+		480728612A12E1C800C31B04 /* WorkoutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsViewController.swift; sourceTree = "<group>"; };
+		480728632A12E1D800C31B04 /* WorkoutsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsViewModel.swift; sourceTree = "<group>"; };
 		48C1B0452A107C1600904969 /* WorkinOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkinOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C1B0482A107C1600904969 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48C1B04C2A107C1600904969 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 		4807283F2A128B2200C31B04 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				480728602A12E1AA00C31B04 /* Workouts */,
 				480728402A128B3D00C31B04 /* Authentication */,
 			);
 			path = Modules;
@@ -197,6 +202,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		480728602A12E1AA00C31B04 /* Workouts */ = {
+			isa = PBXGroup;
+			children = (
+				480728612A12E1C800C31B04 /* WorkoutsViewController.swift */,
+				480728632A12E1D800C31B04 /* WorkoutsViewModel.swift */,
+			);
+			path = Workouts;
 			sourceTree = "<group>";
 		};
 		48C1B03C2A107C1600904969 = {
@@ -414,7 +428,9 @@
 				480728282A12511D00C31B04 /* Workout+CoreDataProperties.swift in Sources */,
 				48C1B0532A107C1600904969 /* WorkinOut.xcdatamodeld in Sources */,
 				4807284D2A12957900C31B04 /* LoginViewModel.swift in Sources */,
+				480728622A12E1C800C31B04 /* WorkoutsViewController.swift in Sources */,
 				480728272A12511D00C31B04 /* Workout+CoreDataClass.swift in Sources */,
+				480728642A12E1D800C31B04 /* WorkoutsViewModel.swift in Sources */,
 				480728562A12A66800C31B04 /* UIColor+AppColors.swift in Sources */,
 				480728582A12A92800C31B04 /* ViewModel.swift in Sources */,
 				480728542A12A35C00C31B04 /* ViewCodable.swift in Sources */,

@@ -34,6 +34,10 @@ class AppCoordinator: Coordinator {
         // TODO
     }
 
+    func goToWorkouts() {
+        navigationController.setViewControllers([WorkoutsViewController(viewModel: WorkoutsViewModel(self))], animated: true)
+    }
+
     func viewController() -> UIViewController {
         guard let viewController = navigationController.topViewController else { return navigationController.viewControllers[0] }
         return viewController
