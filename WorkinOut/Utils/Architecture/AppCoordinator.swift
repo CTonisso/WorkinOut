@@ -27,7 +27,11 @@ class AppCoordinator: Coordinator {
     }
 
     func start() {
-        navigationController.pushViewController(LoginViewController(), animated: true)
+        navigationController.pushViewController(LoginViewController(viewModel: LoginViewModel(self)), animated: true)
     }
-    
+
+    func goToRegister() {
+        // TODO
+    }
+
 }

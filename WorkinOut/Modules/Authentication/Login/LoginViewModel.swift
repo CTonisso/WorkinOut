@@ -7,12 +7,29 @@
 
 import Foundation
 
+enum LoginType {
+    case email
+    case google
+}
+
 protocol LoginViewModelDelegate: AnyObject {
     
 }
 
-final class LoginViewModel {
+final class LoginViewModel: ViewModel {
 
-    weak var delegate: LoginViewModelDelegate?
-    
+    weak var coordinator: AppCoordinator?
+
+    init(_ coordinator: AppCoordinator) {
+        self.coordinator = coordinator
+    }
+
+    func loginUserWith(_ type: LoginType, email: String?, password: String?) {
+        
+    }
+
+    func goToRegister() {
+        coordinator?.goToRegister()
+    }
+
 }
