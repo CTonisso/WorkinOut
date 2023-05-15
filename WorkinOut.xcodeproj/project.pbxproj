@@ -11,6 +11,7 @@
 		480728282A12511D00C31B04 /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480728242A12511D00C31B04 /* Workout+CoreDataProperties.swift */; };
 		480728292A12511D00C31B04 /* Exercise+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480728252A12511D00C31B04 /* Exercise+CoreDataClass.swift */; };
 		4807282A2A12511D00C31B04 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480728262A12511D00C31B04 /* Exercise+CoreDataProperties.swift */; };
+		4807282C2A12517E00C31B04 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4807282B2A12517E00C31B04 /* DataManager.swift */; };
 		48C1B0492A107C1600904969 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B0482A107C1600904969 /* AppDelegate.swift */; };
 		48C1B04B2A107C1600904969 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B04A2A107C1600904969 /* SceneDelegate.swift */; };
 		48C1B04D2A107C1600904969 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B04C2A107C1600904969 /* ViewController.swift */; };
@@ -45,6 +46,7 @@
 		480728242A12511D00C31B04 /* Workout+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		480728252A12511D00C31B04 /* Exercise+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		480728262A12511D00C31B04 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		4807282B2A12517E00C31B04 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		48C1B0452A107C1600904969 /* WorkinOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkinOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C1B0482A107C1600904969 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48C1B04A2A107C1600904969 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				480728252A12511D00C31B04 /* Exercise+CoreDataClass.swift */,
 				480728262A12511D00C31B04 /* Exercise+CoreDataProperties.swift */,
 				48C1B0512A107C1600904969 /* WorkinOut.xcdatamodeld */,
+				4807282B2A12517E00C31B04 /* DataManager.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				48C1B04D2A107C1600904969 /* ViewController.swift in Sources */,
 				4807282A2A12511D00C31B04 /* Exercise+CoreDataProperties.swift in Sources */,
 				48C1B0492A107C1600904969 /* AppDelegate.swift in Sources */,
+				4807282C2A12517E00C31B04 /* DataManager.swift in Sources */,
 				48C1B04B2A107C1600904969 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
