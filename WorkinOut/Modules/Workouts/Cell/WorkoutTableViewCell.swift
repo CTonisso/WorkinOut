@@ -89,6 +89,7 @@ extension WorkoutTableViewCell: ViewCodable {
         backgroundView?.backgroundColor = .clear
         contentView.backgroundColor = .clear
         backgroundColor = .clear
+        selectionStyle = .none
     }
     
     

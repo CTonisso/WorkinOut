@@ -15,6 +15,7 @@ class WorkoutDetailsViewController: UIViewController {
     init(viewModel: WorkoutDetailsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        title = "Detalhes"
     }
     
     required init?(coder: NSCoder) {

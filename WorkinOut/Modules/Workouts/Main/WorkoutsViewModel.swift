@@ -30,13 +30,17 @@ class WorkoutsViewModel: ViewModel {
     }
 
     func addWorkout() {
-        coordinator?.goToAddWorkout(completion: { update in
+        coordinator?.goToAddWorkout() { update in
             if update {
                 self.fetchWorkouts(for: nil)
             }
-        })
+        }
     }
     
+    func showWorkoutDetails(at indexPath: IndexPath) {
+        coordinator?.goToWorkoutDetails(workout: workouts[indexPath.row])
+    }
+
     func workoutAt(_ indexPath: IndexPath) -> Workout {
         return workouts[indexPath.row]
     }
