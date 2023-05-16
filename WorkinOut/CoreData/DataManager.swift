@@ -58,6 +58,7 @@ class DataManager {
 
     func fetchWorkouts(for date: Date? = nil) -> [Workout] {
         let request: NSFetchRequest<Workout> = Workout.fetchRequest()
+        // TODO: Test date filter
         if let unwrapedDate = date {
             let dateFormat = DateFormatter()
             dateFormat.dateFormat = "yyyy-MM-dd"

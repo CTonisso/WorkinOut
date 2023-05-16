@@ -21,6 +21,7 @@ class AppCoordinator: Coordinator {
     var parentCoordinator: Coordinator?
     var children: [Coordinator] = []
     var navigationController: UINavigationController
+    var shouldUpdate: ((_: Bool) -> Void)?
 
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -42,8 +43,14 @@ class AppCoordinator: Coordinator {
         navigationController.setViewControllers([WorkoutsViewController(viewModel: WorkoutsViewModel(self))], animated: true)
     }
 
-    func goToAddWorkout() {
+    func goToAddWorkout(completion: ((_: Bool) -> Void)? = nil) {
         navigationController.present(AddWorkoutViewController(viewModel: AddWorkoutViewModel(self)), animated: true)
+        shouldUpdate = completion
+    }
+
+    func pop(shouldUpdateParent: Bool = false) {
+        navigationController.popViewController(animated: true)
+        shouldUpdate?(shouldUpdateParent)
     }
 
     func viewController() -> UIViewController {
