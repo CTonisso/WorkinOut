@@ -13,5 +13,9 @@ extension UIColor {
     @nonobjc class var highlightYellow: UIColor {
         return UIColor(red: 241.0 / 255.0, green: 196.0 / 255.0, blue: 15.0 / 255.0, alpha: 1.0)
     }
+    
+    @nonobjc class var cellGray: UIColor {
+        return UIColor(white: 1/4, alpha: 1.0)
+    }
 
 }

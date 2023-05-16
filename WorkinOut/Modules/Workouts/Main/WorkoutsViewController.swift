@@ -13,9 +13,8 @@ class WorkoutsViewController: UIViewController {
     private var viewModel: WorkoutsViewModel
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.registerWithClass(WorkoutTableViewCell.self)
+        tableView.backgroundColor = .clear
         return tableView
     }()
     
@@ -36,10 +35,6 @@ class WorkoutsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.prefersLargeTitles = true
-        tabBarController?.tabBar.isHidden = false
     }
 
     @objc
@@ -69,10 +64,26 @@ extension WorkoutsViewController: ViewCodable {
     func setupUI() {
         title = "Workouts"
         // TODO: Encapsulate navigationBar configuration
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.highlightYellow]
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.highlightYellow]
+        
+     
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .darkGray
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.highlightYellow]
+        appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.highlightYellow]
+        navigationController?.navigationBar.backgroundColor = .darkGray
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.isHidden = false
+        navigationController?.navigationBar.prefersLargeTitles = true
+        tabBarController?.tabBar.isHidden = false
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addWorkout))
         navigationItem.rightBarButtonItem?.tintColor = .highlightYellow
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+
+        viewModel.fetchWorkouts(for: nil)
     }
     
 }
@@ -88,8 +99,7 @@ extension WorkoutsViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 190
-//    }
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
 }

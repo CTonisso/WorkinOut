@@ -12,7 +12,7 @@ class DataManager {
     static let shared = DataManager()
     
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "CoreDataRelationships")
+        let container = NSPersistentContainer(name: "WorkinOut")
         container.loadPersistentStores { storeDescription, error in
             if let error = error as NSError? {
                 // TODO  Implement crashlytics
