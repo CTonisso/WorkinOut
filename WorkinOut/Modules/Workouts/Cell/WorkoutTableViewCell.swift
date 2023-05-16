@@ -13,7 +13,7 @@ class WorkoutTableViewCell: UITableViewCell {
     private let cellBackgroundView: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.highlightYellow.cgColor
-        view.layer.borderWidth = 4
+        view.layer.borderWidth = 2
         view.layer.cornerRadius = 16
         view.backgroundColor = .cellGray
         return view
@@ -64,25 +64,24 @@ extension WorkoutTableViewCell: ViewCodable {
         cellBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cellBackgroundView.heightAnchor.constraint(equalToConstant: 100),
-            cellBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            cellBackgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            cellBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
+            cellBackgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -4),
             cellBackgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             cellBackgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8)
         ])
 
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: cellBackgroundView.topAnchor, constant: 12),
+            titleLabel.topAnchor.constraint(equalTo: cellBackgroundView.topAnchor, constant: 4),
             titleLabel.leadingAnchor.constraint(equalTo: cellBackgroundView.leadingAnchor, constant: 12),
             titleLabel.trailingAnchor.constraint(equalTo: cellBackgroundView.trailingAnchor, constant: -12)
         ])
         
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-//            descriptionLabel.bottomAnchor.constraint(equalTo: cellBackgroundView.bottomAnchor, constant: -8)
+            descriptionLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
         ])
     }
     

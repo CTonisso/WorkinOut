@@ -48,9 +48,10 @@ class AppCoordinator: Coordinator {
         shouldUpdate = completion
     }
 
-    func pop(shouldUpdateParent: Bool = false) {
-        navigationController.popViewController(animated: true)
-        shouldUpdate?(shouldUpdateParent)
+    func dismiss(shouldUpdateParent: Bool = false) {
+        navigationController.dismiss(animated: true) { [weak self] in
+            self?.shouldUpdate?(shouldUpdateParent)
+        }
     }
 
     func viewController() -> UIViewController {

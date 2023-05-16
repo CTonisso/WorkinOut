@@ -60,9 +60,7 @@ class DataManager {
         let request: NSFetchRequest<Workout> = Workout.fetchRequest()
         // TODO: Test date filter
         if let unwrapedDate = date {
-            let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "yyyy-MM-dd"
-            request.predicate = NSPredicate(format: "date = %@", dateFormat.string(from: unwrapedDate))
+            request.predicate = NSPredicate(format: "date = %@", unwrapedDate as NSDate)
         }
         var fetchedWorkouts: [Workout] = []
         

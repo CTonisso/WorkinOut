@@ -17,11 +17,11 @@ class AddWorkoutViewModel: ViewModel {
     
     func addWorkout(name: String, description: String, date: Date) {
         let _ = DataManager.shared.createWorkout(name: name, description: description, date: date)
-        coordinator?.pop(shouldUpdateParent: true)
+        coordinator?.dismiss(shouldUpdateParent: true)
     }
 
     func cancel() {
-        coordinator?.pop()
+        coordinator?.dismiss()
     }
 
 }

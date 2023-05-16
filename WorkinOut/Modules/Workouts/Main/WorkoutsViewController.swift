@@ -30,6 +30,7 @@ class WorkoutsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .darkGray
+        viewModel.delegate = self
         setup()
     }
     
@@ -102,4 +103,12 @@ extension WorkoutsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+}
+
+extension WorkoutsViewController: WorkoutsViewModelDelegate {
+    
+    func didFetchWorkouts() {
+        tableView.reloadData()
+    }
+
 }

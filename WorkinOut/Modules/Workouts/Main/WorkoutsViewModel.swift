@@ -8,7 +8,7 @@
 import Foundation
 
 protocol WorkoutsViewModelDelegate: AnyObject {
-    func didFetchWorkouts(workouts: [Workout])
+    func didFetchWorkouts()
 }
 
 class WorkoutsViewModel: ViewModel {
@@ -24,7 +24,7 @@ class WorkoutsViewModel: ViewModel {
 
     func fetchWorkouts(for date: Date?) {
         workouts = DataManager.shared.fetchWorkouts(for: date)
-        delegate?.didFetchWorkouts(workouts: workouts)
+        delegate?.didFetchWorkouts()
         guard let unwrapedDate = date else { return }
         self.date = unwrapedDate
     }
@@ -32,7 +32,7 @@ class WorkoutsViewModel: ViewModel {
     func addWorkout() {
         coordinator?.goToAddWorkout(completion: { update in
             if update {
-                self.fetchWorkouts(for: self.date)
+                self.fetchWorkouts(for: nil)
             }
         })
     }
