@@ -10,10 +10,6 @@ import FirebaseAuth
 import FirebaseCore
 import GoogleSignIn
 
-protocol LoginViewModelDelegate: AnyObject {
-    
-}
-
 final class LoginViewModel {
 
     weak var coordinator: AuthCoordinator?
@@ -27,7 +23,7 @@ final class LoginViewModel {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
           guard let strongSelf = self else { return }
             if error != nil {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription as Any)
             } else {
                 strongSelf.coordinator?.start()
             }

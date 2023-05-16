@@ -46,13 +46,15 @@ class DataManager {
         return workout
     }
 
-    func createExercise(name: String, image: URL, notes: String, workout: Workout) -> Exercise {
+    func createExercise(name: String, image: URL, notes: String, workout: Workout?) -> Exercise {
         let exercise = Exercise(context: persistentContainer.viewContext)
         exercise.id = UUID()
         exercise.name = name
         exercise.image = image
         exercise.notes = notes
-        exercise.addToWorkout(workout)
+        if let unwrapedWorkout = workout {
+            exercise.addToWorkout(unwrapedWorkout)
+        }
         return exercise
     }
 

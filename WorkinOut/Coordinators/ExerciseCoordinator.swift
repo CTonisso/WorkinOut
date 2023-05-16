@@ -6,6 +6,7 @@
 //
 
 import FirebaseStorage
+import FirebaseFirestore
 import Foundation
 import UIKit
 
@@ -17,9 +18,11 @@ class ExerciseCoordinator: Coordinator {
     var shouldUpdate: ((_: Bool) -> Void)?
     
     private let storage = Storage.storage()
+    private let firestoreDatabase: Firestore
 
     init(_ navigationController: UINavigationController = UINavigationController()) {
         self.navigationController = navigationController
+        self.firestoreDatabase = Firestore.firestore()
         start()
     }
 
@@ -30,7 +33,7 @@ class ExerciseCoordinator: Coordinator {
 
     func goToAddExercise() {
         let storageRef = storage.reference().child("exercise_images")
-        var viewModel = AddExerciseViewModel(self, storageReference: storegeRef)
+        let viewModel = AddExerciseViewModel(self, storageRef: storageRef, firestore: firestoreDatabase.collection("exercises"))
         navigationController.present(AddExerciseViewController(viewModel: viewModel), animated: true)
     }
 

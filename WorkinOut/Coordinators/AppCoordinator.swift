@@ -22,10 +22,11 @@ class AppCoordinator: Coordinator {
     var children: [Coordinator] = []
     var navigationController: UINavigationController
     private var isLoggedIn: Bool
+    private let defaults = UserDefaults.standard
 
-    init(_ navigationController: UINavigationController, isLoggedIn: Bool = true) {
+    init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.isLoggedIn = isLoggedIn
+        self.isLoggedIn = defaults.bool(forKey: "isLoggedIn")
     }
 
     func start() {
