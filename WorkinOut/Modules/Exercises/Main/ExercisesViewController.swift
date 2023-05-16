@@ -27,6 +27,10 @@ class ExercisesViewController: UIViewController {
         setup()
     }
     
+    @objc
+    func addExercise() {
+        viewModel.addExercise()
+    }
 }
 
 extension ExercisesViewController: ViewCodable {
@@ -40,7 +44,9 @@ extension ExercisesViewController: ViewCodable {
     }
     
     func setupUI() {
-        
+        title = "Exercícios"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addExercise))
+        navigationItem.rightBarButtonItem?.tintColor = .highlightYellow
     }
     
 }

@@ -22,8 +22,7 @@ class WorkoutsCoordinator: Coordinator {
 
     func start() {
         navigationController.setViewControllers([WorkoutsViewController(viewModel: WorkoutsViewModel(self))], animated: true)
-        configureNavigationBar()
-//        navigationController.becomeFirstResponder()
+        NavBarUtils.configureNavigationBar(for: navigationController)
     }
 
     func goToMain() {
@@ -45,15 +44,4 @@ class WorkoutsCoordinator: Coordinator {
         }
     }
 
-    func configureNavigationBar() {
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .darkGray
-        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.highlightYellow]
-        appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.highlightYellow]
-        navigationController.navigationBar.backgroundColor = .darkGray
-        navigationController.navigationBar.scrollEdgeAppearance = appearance
-        navigationController.navigationBar.standardAppearance = appearance
-        navigationController.navigationBar.isHidden = false
-        navigationController.navigationBar.prefersLargeTitles = true
-    }
 }

@@ -74,9 +74,11 @@ class DataManager {
         return fetchedWorkouts
     }
 
-    func fetchExercises(_ workout: Workout) -> [Exercise] {
+    func fetchExercises(_ workout: Workout? = nil) -> [Exercise] {
         let request: NSFetchRequest<Exercise> = Exercise.fetchRequest()
-        request.predicate = NSPredicate(format: "workout = %@", workout)
+        if let unwrapedWorkout = workout {
+            request.predicate = NSPredicate(format: "workout = %@", unwrapedWorkout)
+        }
         var fetchedExercises: [Exercise] = []
 
         do {

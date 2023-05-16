@@ -48,4 +48,5 @@ class WorkoutsViewModel {
     func numberOfWorkouts() -> Int {
         return workouts.count
     }
+
 }

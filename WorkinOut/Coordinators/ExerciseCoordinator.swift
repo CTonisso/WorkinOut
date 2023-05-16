@@ -22,10 +22,11 @@ class ExerciseCoordinator: Coordinator {
 
     func start() {
         navigationController.setViewControllers([ExercisesViewController(viewModel: ExercisesViewModel(self))], animated: true)
+        NavBarUtils.configureNavigationBar(for: navigationController)
     }
 
-    func goToRegister() {
-        // TODO
+    func goToAddExercise() {
+        navigationController.present(AddExerciseViewController(viewModel: AddExerciseViewModel(self)), animated: true)
     }
 
     func pop() {

@@ -40,6 +40,9 @@
 		480728822A13F14E00C31B04 /* WorkoutsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480728812A13F14E00C31B04 /* WorkoutsCoordinator.swift */; };
 		480728842A13F16100C31B04 /* ExerciseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480728832A13F16100C31B04 /* ExerciseCoordinator.swift */; };
 		480728892A140ACA00C31B04 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480728882A140ACA00C31B04 /* TabBarCoordinator.swift */; };
+		4807288C2A14141400C31B04 /* AddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4807288B2A14141400C31B04 /* AddExerciseViewController.swift */; };
+		4807288E2A14143D00C31B04 /* AddExerciseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4807288D2A14143D00C31B04 /* AddExerciseViewModel.swift */; };
+		480728902A14156A00C31B04 /* NavBarUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4807288F2A14156A00C31B04 /* NavBarUtils.swift */; };
 		48C1B0492A107C1600904969 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B0482A107C1600904969 /* AppDelegate.swift */; };
 		48C1B04D2A107C1600904969 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B04C2A107C1600904969 /* ViewController.swift */; };
 		48C1B0532A107C1600904969 /* WorkinOut.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B0512A107C1600904969 /* WorkinOut.xcdatamodeld */; };
@@ -94,6 +97,9 @@
 		480728812A13F14E00C31B04 /* WorkoutsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsCoordinator.swift; sourceTree = "<group>"; };
 		480728832A13F16100C31B04 /* ExerciseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCoordinator.swift; sourceTree = "<group>"; };
 		480728882A140ACA00C31B04 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		4807288B2A14141400C31B04 /* AddExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewController.swift; sourceTree = "<group>"; };
+		4807288D2A14143D00C31B04 /* AddExerciseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExerciseViewModel.swift; sourceTree = "<group>"; };
+		4807288F2A14156A00C31B04 /* NavBarUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarUtils.swift; sourceTree = "<group>"; };
 		48C1B0452A107C1600904969 /* WorkinOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkinOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C1B0482A107C1600904969 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48C1B04C2A107C1600904969 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -182,17 +188,9 @@
 				4807285C2A12CE7800C31B04 /* Extension */,
 				480728592A12CE1A00C31B04 /* Views */,
 				480728522A12A32E00C31B04 /* ViewCode */,
-				4807284F2A129B2D00C31B04 /* Architecture */,
+				4807288F2A14156A00C31B04 /* NavBarUtils.swift */,
 			);
 			path = Utils;
-			sourceTree = "<group>";
-		};
-		4807284F2A129B2D00C31B04 /* Architecture */ = {
-			isa = PBXGroup;
-			children = (
-				4807287E2A13F0F600C31B04 /* Coordinators */,
-			);
-			path = Architecture;
 			sourceTree = "<group>";
 		};
 		480728522A12A32E00C31B04 /* ViewCode */ = {
@@ -276,6 +274,7 @@
 		480728782A13D2E500C31B04 /* Exercises */ = {
 			isa = PBXGroup;
 			children = (
+				4807288A2A14140100C31B04 /* AddExercise */,
 				480728792A13D2FF00C31B04 /* Main */,
 			);
 			path = Exercises;
@@ -302,6 +301,15 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
+		4807288A2A14140100C31B04 /* AddExercise */ = {
+			isa = PBXGroup;
+			children = (
+				4807288B2A14141400C31B04 /* AddExerciseViewController.swift */,
+				4807288D2A14143D00C31B04 /* AddExerciseViewModel.swift */,
+			);
+			path = AddExercise;
+			sourceTree = "<group>";
+		};
 		48C1B03C2A107C1600904969 = {
 			isa = PBXGroup;
 			children = (
@@ -326,6 +334,7 @@
 		48C1B0472A107C1600904969 /* WorkinOut */ = {
 			isa = PBXGroup;
 			children = (
+				4807287E2A13F0F600C31B04 /* Coordinators */,
 				4807284E2A129B1500C31B04 /* Utils */,
 				48C1B0912A124CF200904969 /* CoreData */,
 				4807283F2A128B2200C31B04 /* Modules */,
@@ -516,11 +525,13 @@
 				480728822A13F14E00C31B04 /* WorkoutsCoordinator.swift in Sources */,
 				480728512A129B3B00C31B04 /* AppCoordinator.swift in Sources */,
 				480728282A12511D00C31B04 /* Workout+CoreDataProperties.swift in Sources */,
+				480728902A14156A00C31B04 /* NavBarUtils.swift in Sources */,
 				4807287B2A13D30F00C31B04 /* ExercisesViewController.swift in Sources */,
 				480728772A13CBDD00C31B04 /* WorkoutDetailsViewModel.swift in Sources */,
 				480728682A1391A900C31B04 /* AddWorkoutViewController.swift in Sources */,
 				48C1B0532A107C1600904969 /* WorkinOut.xcdatamodeld in Sources */,
 				4807284D2A12957900C31B04 /* LoginViewModel.swift in Sources */,
+				4807288E2A14143D00C31B04 /* AddExerciseViewModel.swift in Sources */,
 				480728842A13F16100C31B04 /* ExerciseCoordinator.swift in Sources */,
 				4807287D2A13D37800C31B04 /* ExercisesViewModel.swift in Sources */,
 				480728892A140ACA00C31B04 /* TabBarCoordinator.swift in Sources */,
@@ -535,6 +546,7 @@
 				480728292A12511D00C31B04 /* Exercise+CoreDataClass.swift in Sources */,
 				48C1B04D2A107C1600904969 /* ViewController.swift in Sources */,
 				4807285B2A12CE3A00C31B04 /* WOTextField.swift in Sources */,
+				4807288C2A14141400C31B04 /* AddExerciseViewController.swift in Sources */,
 				4807282A2A12511D00C31B04 /* Exercise+CoreDataProperties.swift in Sources */,
 				48C1B0492A107C1600904969 /* AppDelegate.swift in Sources */,
 				4807282C2A12517E00C31B04 /* DataManager.swift in Sources */,
