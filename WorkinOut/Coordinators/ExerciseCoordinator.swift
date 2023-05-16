@@ -5,6 +5,7 @@
 //  Created by Carlos Marcelo Tonisso Junior on 16/05/23.
 //
 
+import FirebaseStorage
 import Foundation
 import UIKit
 
@@ -14,6 +15,8 @@ class ExerciseCoordinator: Coordinator {
     var children: [Coordinator] = []
     var navigationController: UINavigationController
     var shouldUpdate: ((_: Bool) -> Void)?
+    
+    private let storage = Storage.storage()
 
     init(_ navigationController: UINavigationController = UINavigationController()) {
         self.navigationController = navigationController
@@ -26,7 +29,9 @@ class ExerciseCoordinator: Coordinator {
     }
 
     func goToAddExercise() {
-        navigationController.present(AddExerciseViewController(viewModel: AddExerciseViewModel(self)), animated: true)
+        let storageRef = storage.reference().child("exercise_images")
+        var viewModel = AddExerciseViewModel(self, storageReference: storegeRef)
+        navigationController.present(AddExerciseViewController(viewModel: viewModel), animated: true)
     }
 
     func pop() {
