@@ -27,6 +27,10 @@ class AppCoordinator: Coordinator {
     }
 
     func start() {
+        goToWorkouts()
+    }
+
+    func goToLogin() {
         navigationController.pushViewController(LoginViewController(viewModel: LoginViewModel(self)), animated: true)
     }
 
@@ -36,6 +40,10 @@ class AppCoordinator: Coordinator {
 
     func goToWorkouts() {
         navigationController.setViewControllers([WorkoutsViewController(viewModel: WorkoutsViewModel(self))], animated: true)
+    }
+
+    func goToAddWorkout() {
+        navigationController.present(AddWorkoutViewController(viewModel: AddWorkoutViewModel(self)), animated: true)
     }
 
     func viewController() -> UIViewController {

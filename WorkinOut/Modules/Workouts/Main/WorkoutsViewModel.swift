@@ -14,4 +14,12 @@ class WorkoutsViewModel: ViewModel {
         self.coordinator = coordinator
     }
 
+    func fetchWorkoutsFor(date: Date) {
+        
+    }
+    
+    func addWorkout() {
+        coordinator?.goToAddWorkout()
+    }
+
 }

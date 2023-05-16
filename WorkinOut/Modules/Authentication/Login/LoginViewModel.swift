@@ -28,6 +28,8 @@ final class LoginViewModel: ViewModel {
           guard let strongSelf = self else { return }
             if error != nil {
                 print(error?.localizedDescription)
+            } else {
+                strongSelf.coordinator?.goToWorkouts()
             }
             
             print("Login with e-mail was succesful")

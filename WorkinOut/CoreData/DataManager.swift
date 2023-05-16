@@ -36,12 +36,13 @@ class DataManager {
         }
     }
 
-    func createWorkout(name: String, description: String) -> Workout {
+    func createWorkout(name: String, description: String, date: Date) -> Workout {
         let workout = Workout(context: persistentContainer.viewContext)
         workout.id = UUID()
         workout.name = name
         workout.workoutDescription = description
-        workout.date = Date()
+        workout.date = date
+        save()
         return workout
     }
 
@@ -55,8 +56,13 @@ class DataManager {
         return exercise
     }
 
-    func fetchWorkouts() -> [Workout] {
+    func fetchWorkouts(for date: Date? = nil) -> [Workout] {
         let request: NSFetchRequest<Workout> = Workout.fetchRequest()
+        if let unwrapedDate = date {
+            let dateFormat = DateFormatter()
+            dateFormat.dateFormat = "yyyy-MM-dd"
+            request.predicate = NSPredicate(format: "date = %@", dateFormat.string(from: unwrapedDate))
+        }
         var fetchedWorkouts: [Workout] = []
         
         do {
