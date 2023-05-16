@@ -16,15 +16,17 @@ class WorkoutsViewModel: ViewModel {
     weak var coordinator: AppCoordinator?
     weak var delegate: WorkoutsViewModelDelegate?
     private var date = Date()
+    private var workouts: [Workout] = []
 
     init(_ coordinator: AppCoordinator) {
         self.coordinator = coordinator
     }
 
-    func fetchWorkouts(for date: Date) {
-        let workouts = DataManager.shared.fetchWorkouts(for: date)
-        self.date = date
+    func fetchWorkouts(for date: Date?) {
+        workouts = DataManager.shared.fetchWorkouts(for: date)
         delegate?.didFetchWorkouts(workouts: workouts)
+        guard let unwrapedDate = date else { return }
+        self.date = unwrapedDate
     }
 
     func addWorkout() {
@@ -34,5 +36,12 @@ class WorkoutsViewModel: ViewModel {
             }
         })
     }
+    
+    func workoutAt(_ indexPath: IndexPath) -> Workout {
+        return workouts[indexPath.row]
+    }
 
+    func numberOfWorkouts() -> Int {
+        return workouts.count
+    }
 }

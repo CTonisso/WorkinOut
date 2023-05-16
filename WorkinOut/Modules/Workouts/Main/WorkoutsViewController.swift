@@ -11,11 +11,13 @@ import UIKit
 class WorkoutsViewController: UIViewController {
     
     private var viewModel: WorkoutsViewModel
-    private let scrollView = UIScrollView()
-    private let stackView = UIStackView()
-    private let view1 = UIView()
-    private let view2 = UIView()
-//    private let
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.registerWithClass(WorkoutTableViewCell.self)
+        return tableView
+    }()
     
     init(viewModel: WorkoutsViewModel) {
         self.viewModel = viewModel
@@ -49,38 +51,45 @@ class WorkoutsViewController: UIViewController {
 extension WorkoutsViewController: ViewCodable {
     
     func buildHierarchy() {
-        view.addSubview(scrollView)
-        scrollView.addSubview(stackView)
-        stackView.addArrangedSubview(view1)
-        stackView.addArrangedSubview(view2)
+        view.addSubview(tableView)
     }
     
     func buildConstraints() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-        ])
         updateViewConstraints()
     }
     
     func setupUI() {
-        stackView.distribution = .fillEqually
-        stackView.axis = .vertical
-        view1.backgroundColor = .black
-        view2.backgroundColor = .gray
         title = "Workouts"
+        // TODO: Encapsulate navigationBar configuration
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.highlightYellow]
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.highlightYellow]
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addWorkout))
+        navigationItem.rightBarButtonItem?.tintColor = .highlightYellow
     }
+    
+}
+
+extension WorkoutsViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.numberOfWorkouts()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: WorkoutTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        cell.configureFor(viewModel.workoutAt(indexPath))
+        return cell
+    }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 190
+//    }
     
 }
