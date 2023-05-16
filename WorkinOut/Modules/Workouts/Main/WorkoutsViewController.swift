@@ -33,10 +33,6 @@ class WorkoutsViewController: UIViewController {
         viewModel.delegate = self
         setup()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
 
     @objc
     func addWorkout() {
@@ -64,20 +60,6 @@ extension WorkoutsViewController: ViewCodable {
     
     func setupUI() {
         title = "Workouts"
-        // TODO: Encapsulate navigationBar configuration
-        
-     
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .darkGray
-        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.highlightYellow]
-        appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.highlightYellow]
-        navigationController?.navigationBar.backgroundColor = .darkGray
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.prefersLargeTitles = true
-        tabBarController?.tabBar.isHidden = false
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addWorkout))
         navigationItem.rightBarButtonItem?.tintColor = .highlightYellow
         

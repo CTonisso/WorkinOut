@@ -11,14 +11,14 @@ protocol WorkoutsViewModelDelegate: AnyObject {
     func didFetchWorkouts()
 }
 
-class WorkoutsViewModel: ViewModel {
+class WorkoutsViewModel {
     
-    weak var coordinator: AppCoordinator?
+    weak var coordinator: WorkoutsCoordinator?
     weak var delegate: WorkoutsViewModelDelegate?
     private var date = Date()
     private var workouts: [Workout] = []
 
-    init(_ coordinator: AppCoordinator) {
+    init(_ coordinator: WorkoutsCoordinator) {
         self.coordinator = coordinator
     }
 

@@ -14,12 +14,12 @@ protocol LoginViewModelDelegate: AnyObject {
     
 }
 
-final class LoginViewModel: ViewModel {
+final class LoginViewModel {
 
-    weak var coordinator: AppCoordinator?
+    weak var coordinator: AuthCoordinator?
 //  TODO:  var loginService: LoginService
 
-    init(_ coordinator: AppCoordinator) {
+    init(_ coordinator: AuthCoordinator) {
         self.coordinator = coordinator
     }
 
@@ -29,7 +29,7 @@ final class LoginViewModel: ViewModel {
             if error != nil {
                 print(error?.localizedDescription)
             } else {
-                strongSelf.coordinator?.goToWorkouts()
+                strongSelf.coordinator?.start()
             }
             
             print("Login with e-mail was succesful")

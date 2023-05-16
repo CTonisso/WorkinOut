@@ -7,11 +7,11 @@
 
 import Foundation
 
-class AddWorkoutViewModel: ViewModel {
+class AddWorkoutViewModel {
 
-    weak var coordinator: AppCoordinator?
+    weak var coordinator: WorkoutsCoordinator?
     
-    init(_ coordinator: AppCoordinator) {
+    init(_ coordinator: WorkoutsCoordinator) {
         self.coordinator = coordinator
     }
     
