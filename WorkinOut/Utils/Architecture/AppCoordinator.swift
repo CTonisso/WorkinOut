@@ -48,6 +48,10 @@ class AppCoordinator: Coordinator {
         shouldUpdate = completion
     }
 
+    func goToWorkoutDetails(workout: Workout) {
+        navigationController.pushViewController(WorkoutDetailsViewController(viewModel: WorkoutDetailsViewModel(self, workout: workout)), animated: true)
+    }
+
     func dismiss(shouldUpdateParent: Bool = false) {
         navigationController.dismiss(animated: true) { [weak self] in
             self?.shouldUpdate?(shouldUpdateParent)
