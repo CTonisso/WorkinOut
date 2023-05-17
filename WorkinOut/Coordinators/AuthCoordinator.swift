@@ -10,10 +10,11 @@ import UIKit
 
 class AuthCoordinator: Coordinator {
 
-    var parentCoordinator: Coordinator?
+    weak var parentCoordinator: Coordinator?
     var children: [Coordinator] = []
     var navigationController: UINavigationController
     var shouldUpdate: ((_: Bool) -> Void)?
+    private let defaults = UserDefaults.standard
 
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -27,6 +28,11 @@ class AuthCoordinator: Coordinator {
         // TODO
     }
 
+    func login() {
+        defaults.set(true, forKey: "isLoggedIn")
+        parentCoordinator?.start()
+    }
+    
     func pop() {
         navigationController.popViewController(animated: true)
     }

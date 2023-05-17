@@ -10,14 +10,13 @@ import UIKit
 
 class WorkoutsCoordinator: Coordinator {
 
-    var parentCoordinator: Coordinator?
+    weak var parentCoordinator: Coordinator?
     var children: [Coordinator] = []
     var navigationController: UINavigationController
     var shouldUpdate: ((_: Bool) -> Void)?
 
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
-        start()
     }
 
     func start() {
@@ -40,6 +39,7 @@ class WorkoutsCoordinator: Coordinator {
 
     func dismiss(shouldUpdateParent: Bool = false) {
         navigationController.dismiss(animated: true) { [weak self] in
+            // TODO: Passar no init
             self?.shouldUpdate?(shouldUpdateParent)
         }
     }

@@ -23,7 +23,6 @@ class ExerciseCoordinator: Coordinator {
     init(_ navigationController: UINavigationController = UINavigationController()) {
         self.navigationController = navigationController
         self.firestoreDatabase = Firestore.firestore()
-        start()
     }
 
     func start() {

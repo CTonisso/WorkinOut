@@ -25,11 +25,11 @@ final class LoginViewModel {
             if error != nil {
                 print(error?.localizedDescription as Any)
             } else {
-                strongSelf.coordinator?.start()
+                strongSelf.coordinator?.login()
             }
-            
+
             print("Login with e-mail was succesful")
-          // TODO: ...
+          // TODO: Implement user persistency
         }
     }
     
@@ -46,12 +46,12 @@ final class LoginViewModel {
                       return
                   }
 
-
             let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                               accessToken: user.accessToken.tokenString)
             Auth.auth().signIn(with: credential) { result, error in
                 print("Login with google was succesful")
-//                coordinator?.goToWorkouts()
+                self.coordinator?.login()
+                // TODO: Implement user persistency
             }
         }
     }

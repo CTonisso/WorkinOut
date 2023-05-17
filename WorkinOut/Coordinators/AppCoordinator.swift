@@ -21,16 +21,14 @@ class AppCoordinator: Coordinator {
     var parentCoordinator: Coordinator?
     var children: [Coordinator] = []
     var navigationController: UINavigationController
-    private var isLoggedIn: Bool
     private let defaults = UserDefaults.standard
 
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.isLoggedIn = defaults.bool(forKey: "isLoggedIn")
     }
 
     func start() {
-        if isLoggedIn {
+        if defaults.bool(forKey: "isLoggedIn") {
             navigationController.navigationBar.isHidden = true
             let coordinator = TabBarCoordinator(navigationController: navigationController)
             children.removeAll()
@@ -44,34 +42,4 @@ class AppCoordinator: Coordinator {
         }
     }
 
-}
-
-extension AppCoordinator {
-
-    func configureTabBar(workouts: UINavigationController, exercise: UINavigationController) -> UITabBarController {
-        let tabBarController = UITabBarController()
-        
-//        let workoutsViewController = WorkoutsViewController(viewModel: WorkoutsViewModel(self))
-//        let exercisesViewController = ExercisesViewController(viewModel: ExercisesViewModel(self))
-        
-        let tabBarControllers = [workouts,
-                                 exercise]
-        
-        tabBarController.setViewControllers(tabBarControllers, animated: false)
-        tabBarController.selectedViewController = workouts
-        
-        return tabBarController
-    }
-
-    func configureNavigationBarAppearance() {
-        let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .darkGray
-        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.highlightYellow]
-        appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.highlightYellow]
-        navigationController.navigationBar.backgroundColor = .darkGray
-        navigationController.navigationBar.scrollEdgeAppearance = appearance
-        navigationController.navigationBar.standardAppearance = appearance
-        navigationController.navigationBar.isHidden = false
-        navigationController.navigationBar.prefersLargeTitles = true
-    }
 }

@@ -83,6 +83,7 @@ extension WorkoutsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // TODO: Automatic dimension
         return 100
     }
 

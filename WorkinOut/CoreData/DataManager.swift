@@ -9,8 +9,9 @@ import Foundation
 import CoreData
 
 class DataManager {
+
     static let shared = DataManager()
-    
+
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "WorkinOut")
         container.loadPersistentStores { storeDescription, error in
