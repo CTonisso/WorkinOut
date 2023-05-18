@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // TODO: Encapsulate firebase and GSN methods
         FirebaseApp.configure()
         guard let clientID = FirebaseApp.app()?.options.clientID else { return true }
 

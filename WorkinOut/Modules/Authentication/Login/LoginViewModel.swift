@@ -6,56 +6,36 @@
 //
 
 import Foundation
-import FirebaseAuth
-import FirebaseCore
-import GoogleSignIn
 
 final class LoginViewModel {
 
     weak var coordinator: AuthCoordinator?
-//  TODO:  var loginService: LoginService
+    var service: AuthenticationService
 
-    init(_ coordinator: AuthCoordinator) {
+    init(_ coordinator: AuthCoordinator, service: AuthenticationService) {
         self.coordinator = coordinator
+        self.service = service
     }
 
     func loginUserWithEmail(email: String, password: String) {
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-          guard let strongSelf = self else { return }
-            if error != nil {
-                print(error?.localizedDescription as Any)
+        service.loginUserWithEmail(email: email, password: password) { [weak self] didSucceed in
+            if didSucceed {
+                self?.coordinator?.login()
             } else {
-                strongSelf.coordinator?.login()
-            }
-
-            print("Login with e-mail was succesful")
-          // TODO: Implement user persistency
-        }
-    }
-    
-    func loginUserWithGoogle(viewController: UIViewController) {
-        GIDSignIn.sharedInstance.signIn(withPresenting: viewController) { result, error in
-            guard error == nil else {
-                // TODO: Implement Crashlytics
-                return
-            }
-
-            guard let user = result?.user,
-                  let idToken = user.idToken?.tokenString else {
-                      // TODO: Implement Crashlytics
-                      return
-                  }
-
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                              accessToken: user.accessToken.tokenString)
-            Auth.auth().signIn(with: credential) { result, error in
-                print("Login with google was succesful")
-                self.coordinator?.login()
-                // TODO: Implement user persistency
+                // self?.delegate?.loginFailed()
             }
         }
     }
-    
+
+    func loginUserWithGoogle() {
+        service.loginUserWithGoogle(viewController: coordinator?.navigationController.topViewController) { [weak self] didSucceed in
+            if didSucceed {
+                self?.coordinator?.login()
+            } else {
+                // self?.delegate?.loginFailedForGoogle()
+            }
+        }
+    }
     
     func goToRegister() {
         coordinator?.goToRegister()

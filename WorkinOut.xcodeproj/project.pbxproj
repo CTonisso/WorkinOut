@@ -51,8 +51,10 @@
 		48422B902A16C39500C62244 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48422B8C2A16C39500C62244 /* Exercise+CoreDataProperties.swift */; };
 		48422B912A16C39500C62244 /* Workout+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48422B8D2A16C39500C62244 /* Workout+CoreDataClass.swift */; };
 		48422B922A16C39500C62244 /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48422B8E2A16C39500C62244 /* Workout+CoreDataProperties.swift */; };
+		48422B942A16C8A300C62244 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48422B932A16C8A300C62244 /* RegisterViewController.swift */; };
+		48422B962A16C8C400C62244 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48422B952A16C8C400C62244 /* RegisterViewModel.swift */; };
+		48422B982A16C90600C62244 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48422B972A16C90600C62244 /* AuthenticationService.swift */; };
 		48C1B0492A107C1600904969 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B0482A107C1600904969 /* AppDelegate.swift */; };
-		48C1B04D2A107C1600904969 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B04C2A107C1600904969 /* ViewController.swift */; };
 		48C1B0532A107C1600904969 /* WorkinOut.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B0512A107C1600904969 /* WorkinOut.xcdatamodeld */; };
 		48C1B0552A107C1A00904969 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48C1B0542A107C1A00904969 /* Assets.xcassets */; };
 		48C1B0582A107C1A00904969 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48C1B0562A107C1A00904969 /* LaunchScreen.storyboard */; };
@@ -116,9 +118,11 @@
 		48422B8C2A16C39500C62244 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		48422B8D2A16C39500C62244 /* Workout+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataClass.swift"; sourceTree = "<group>"; };
 		48422B8E2A16C39500C62244 /* Workout+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		48422B932A16C8A300C62244 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		48422B952A16C8C400C62244 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		48422B972A16C90600C62244 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		48C1B0452A107C1600904969 /* WorkinOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkinOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C1B0482A107C1600904969 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		48C1B04C2A107C1600904969 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		48C1B0522A107C1600904969 /* WorkinOut.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkinOut.xcdatamodel; sourceTree = "<group>"; };
 		48C1B0542A107C1A00904969 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48C1B0572A107C1A00904969 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -193,6 +197,8 @@
 		480728422A128B5700C31B04 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				48422B932A16C8A300C62244 /* RegisterViewController.swift */,
+				48422B952A16C8C400C62244 /* RegisterViewModel.swift */,
 			);
 			name = Register;
 			path = "New Group1";
@@ -344,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				48422B5D2A16464C00C62244 /* FirebaseDataService.swift */,
+				48422B972A16C90600C62244 /* AuthenticationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -395,7 +402,6 @@
 				48C1B0912A124CF200904969 /* CoreData */,
 				4807283F2A128B2200C31B04 /* Modules */,
 				48C1B0482A107C1600904969 /* AppDelegate.swift */,
-				48C1B04C2A107C1600904969 /* ViewController.swift */,
 				48C1B0542A107C1A00904969 /* Assets.xcassets */,
 				48C1B0562A107C1A00904969 /* LaunchScreen.storyboard */,
 				48C1B0592A107C1A00904969 /* Info.plist */,
@@ -589,6 +595,7 @@
 				48422B902A16C39500C62244 /* Exercise+CoreDataProperties.swift in Sources */,
 				48C1B0532A107C1600904969 /* WorkinOut.xcdatamodeld in Sources */,
 				4807284D2A12957900C31B04 /* LoginViewModel.swift in Sources */,
+				48422B962A16C8C400C62244 /* RegisterViewModel.swift in Sources */,
 				4807288E2A14143D00C31B04 /* AddExerciseViewModel.swift in Sources */,
 				48422B912A16C39500C62244 /* Workout+CoreDataClass.swift in Sources */,
 				480728842A13F16100C31B04 /* ExerciseCoordinator.swift in Sources */,
@@ -598,6 +605,7 @@
 				4807286A2A1391BA00C31B04 /* AddWorkoutViewModel.swift in Sources */,
 				480728642A12E1D800C31B04 /* WorkoutsViewModel.swift in Sources */,
 				48422B572A1597BE00C62244 /* ExerciseCollectionViewCell.swift in Sources */,
+				48422B982A16C90600C62244 /* AuthenticationService.swift in Sources */,
 				480728562A12A66800C31B04 /* UIColor+AppColors.swift in Sources */,
 				480728802A13F13F00C31B04 /* AuthCoordinator.swift in Sources */,
 				48422B662A169CB800C62244 /* DateHelper.swift in Sources */,
@@ -606,7 +614,6 @@
 				480728542A12A35C00C31B04 /* ViewCodable.swift in Sources */,
 				48422B8F2A16C39500C62244 /* Exercise+CoreDataClass.swift in Sources */,
 				48422B612A164B6000C62244 /* DetailedExercise.swift in Sources */,
-				48C1B04D2A107C1600904969 /* ViewController.swift in Sources */,
 				48422B5E2A16464D00C62244 /* FirebaseDataService.swift in Sources */,
 				4807285B2A12CE3A00C31B04 /* WOTextField.swift in Sources */,
 				4807288C2A14141400C31B04 /* AddExerciseViewController.swift in Sources */,
@@ -615,6 +622,7 @@
 				4807282C2A12517E00C31B04 /* DataManager.swift in Sources */,
 				48422B542A1596B100C62244 /* UICollectionView+Helpers.swift in Sources */,
 				480728752A13CAFD00C31B04 /* WorkoutDetailsViewController.swift in Sources */,
+				48422B942A16C8A300C62244 /* RegisterViewController.swift in Sources */,
 				480728702A13A2FC00C31B04 /* WorkoutTableViewCell.swift in Sources */,
 				480728442A128B9600C31B04 /* LoginViewController.swift in Sources */,
 			);
