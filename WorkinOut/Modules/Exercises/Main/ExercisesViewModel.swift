@@ -29,11 +29,11 @@ class ExercisesViewModel {
         coordinator?.goToAddExercise()
     }
 
-    func workoutAt(_ indexPath: IndexPath) -> Exercise {
+    func exerciseAt(_ indexPath: IndexPath) -> Exercise {
         return exercises[indexPath.row]
     }
 
-    func numberOfWorkouts() -> Int {
+    func numberOfExercises() -> Int {
         return exercises.count
     }
 

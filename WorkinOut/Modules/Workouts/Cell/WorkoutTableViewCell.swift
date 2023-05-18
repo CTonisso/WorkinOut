@@ -21,7 +21,6 @@ class WorkoutTableViewCell: UITableViewCell {
     
     private let titleLabel: UILabel = {
         let view = UILabel()
-        view.text = "Teste"
         view.font = UIFont(name: "Avenir-Medium", size: 24)
         view.textColor = .highlightYellow
         return view
@@ -29,7 +28,6 @@ class WorkoutTableViewCell: UITableViewCell {
 
     private let descriptionLabel: UILabel = {
         let view = UILabel()
-        view.text = "Teste"
         view.font = UIFont(name: "Avenir-Light", size: 16)
         view.textColor = .highlightYellow
         view.numberOfLines = 0
@@ -91,6 +89,5 @@ extension WorkoutTableViewCell: ViewCodable {
         backgroundColor = .clear
         selectionStyle = .none
     }
-    
     
 }
