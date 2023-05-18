@@ -15,6 +15,7 @@ final class NavBarUtils {
         appearance.backgroundColor = .darkGray
         appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.highlightYellow]
         appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.highlightYellow]
+        navigationController.navigationBar.tintColor = .highlightYellow
         navigationController.navigationBar.backgroundColor = .darkGray
         navigationController.navigationBar.scrollEdgeAppearance = appearance
         navigationController.navigationBar.standardAppearance = appearance

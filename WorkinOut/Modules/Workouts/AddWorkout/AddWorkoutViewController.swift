@@ -122,7 +122,7 @@ class AddWorkoutViewController: UIViewController {
 
     @objc
     private func dateChanged(datePicker: UIDatePicker) {
-        workoutDateTextField.text = formatDate(date: datePicker.date)
+        workoutDateTextField.text = DateHelper.formatDate(date: datePicker.date)
     }
 
     @objc
@@ -136,11 +136,6 @@ class AddWorkoutViewController: UIViewController {
         viewModel.cancel()
     }
 
-    private func formatDate(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy HH:mm"
-        return formatter.string(from: date)
-    }
 }
 
 extension AddWorkoutViewController: ViewCodable {

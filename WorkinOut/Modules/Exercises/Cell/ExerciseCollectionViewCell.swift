@@ -23,7 +23,8 @@ class ExerciseCollectionViewCell: UICollectionViewCell {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.backgroundColor = .clear
-        view.isOpaque = false
+        view.layer.cornerRadius = 16
+        view.clipsToBounds = true
         return view
     }()
 

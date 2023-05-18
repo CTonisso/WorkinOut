@@ -11,6 +11,7 @@ import UIKit
 class WorkoutsCoordinator: Coordinator {
 
     var shouldUpdate: ((_: Bool) -> Void)?
+    private let service = FirebaseDataService()
 
     override internal func start() {
         navigationController.setViewControllers([WorkoutsViewController(viewModel: WorkoutsViewModel(self))], animated: true)
@@ -28,6 +29,13 @@ class WorkoutsCoordinator: Coordinator {
 
     func goToWorkoutDetails(workout: Workout) {
         navigationController.pushViewController(WorkoutDetailsViewController(viewModel: WorkoutDetailsViewModel(self, workout: workout)), animated: true)
+    }
+    
+    func addExerciseToWorkout(_ workout: Workout, _ completion: @escaping () -> Void) {
+        let coordinator = ExerciseCoordinator(navigationController)
+        coordinator.parentCoordinator = self
+        children.append(coordinator)
+        coordinator.start()
     }
 
     func dismiss(shouldUpdateParent: Bool = false) {

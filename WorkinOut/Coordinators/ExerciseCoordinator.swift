@@ -15,9 +15,19 @@ class ExerciseCoordinator: Coordinator, UINavigationControllerDelegate {
     private let service = FirebaseDataService()
 
     override internal func start() {
-        let viewModel = ExercisesViewModel(self, service: service)
-        navigationController.setViewControllers([ExercisesViewController(viewModel: viewModel)], animated: true)
-        NavBarUtils.configureNavigationBar(for: navigationController)
+        goToMainExercises()
+    }
+
+    func goToMainExercises() {
+        guard let parentCoordinator = parentCoordinator else { return }
+        if parentCoordinator.isKind(of: WorkoutsCoordinator.self) {
+            let viewModel = ExercisesViewModel(self, service: service)
+            navigationController.present(ExercisesViewController(viewModel: viewModel), animated: true)
+        } else {
+            let viewModel = ExercisesViewModel(self, service: service)
+            navigationController.setViewControllers([ExercisesViewController(viewModel: viewModel)], animated: true)
+            NavBarUtils.configureNavigationBar(for: navigationController)
+        }
     }
 
     func goToAddExercise(completion: ((_: Bool) -> Void)? = nil) {

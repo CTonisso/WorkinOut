@@ -27,7 +27,6 @@ internal class ExercisesViewModel {
             self?.exercises = exercises
             self?.delegate?.didFetchExercises()
         }
-        
     }
 
     internal func addExercise() {
