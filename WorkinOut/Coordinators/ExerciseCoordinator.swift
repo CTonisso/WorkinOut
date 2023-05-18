@@ -14,12 +14,9 @@ class ExerciseCoordinator: Coordinator, UINavigationControllerDelegate {
 
     private var shouldUpdate: ((_: Bool) -> Void)?
     private var updateWithImage: ((_: UIImage) -> Void)?
-    
-    private let storage = Storage.storage()
-    private let firestoreDatabase: Firestore
 
     override internal init(_ navigationController: UINavigationController = UINavigationController()) {
-        self.firestoreDatabase = Firestore.firestore()
+        
         super.init(navigationController)
     }
 
@@ -29,8 +26,7 @@ class ExerciseCoordinator: Coordinator, UINavigationControllerDelegate {
     }
 
     func goToAddExercise() {
-        let storageRef = storage.reference().child("exercise_images")
-        let viewModel = AddExerciseViewModel(self, storageRef: storageRef, firestore: firestoreDatabase.collection("exercises"))
+        let viewModel = AddExerciseViewModel(self, service: FirebaseDataService())
         navigationController.present(AddExerciseViewController(viewModel: viewModel), animated: true)
     }
 

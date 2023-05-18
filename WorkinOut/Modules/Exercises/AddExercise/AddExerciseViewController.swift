@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+internal protocol AddExerciseViewModelDelegate: AnyObject {
+    func didSelectImage(_ image: UIImage)
+}
+
 class AddExerciseViewController: UIViewController, UINavigationControllerDelegate {
     
     private var viewModel: AddExerciseViewModel
