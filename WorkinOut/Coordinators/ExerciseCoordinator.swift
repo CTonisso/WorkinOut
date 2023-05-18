@@ -41,7 +41,7 @@ class ExerciseCoordinator: Coordinator, UINavigationControllerDelegate {
         imagePickerController.allowsEditing = true
         updateWithImage = completion
 
-        navigationController.present(imagePickerController, animated: true)
+        navigationController.presentedViewController?.present(imagePickerController, animated: true)
     }
 
     func pop() {
@@ -63,7 +63,7 @@ extension ExerciseCoordinator: UIImagePickerControllerDelegate {
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
         self.updateWithImage?(image)
 
-        navigationController.dismiss(animated: true, completion: nil)
+        navigationController.presentedViewController?.dismiss(animated: true, completion: nil)
     }
 
 }

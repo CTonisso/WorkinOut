@@ -34,9 +34,11 @@ class AddExerciseViewController: UIViewController, UINavigationControllerDelegat
     private let exerciseImageView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "photo-camera")
-        view.contentMode = UIImageView.ContentMode.scaleAspectFit
+        view.contentMode = .center
         view.layer.borderWidth = 3
         view.layer.borderColor = UIColor.white.cgColor
+        view.layer.cornerRadius = 8
+        view.clipsToBounds = true
         return view
     }()
 
@@ -61,6 +63,7 @@ class AddExerciseViewController: UIViewController, UINavigationControllerDelegat
         view.layer.borderColor = UIColor.highlightYellow.cgColor
         view.layer.borderWidth = 3
         view.font = UIFont(name: "Avenir-Book", size: 16)
+        view.text = "Notas"
         view.textColor = .highlightYellow
         view.keyboardType = .default
         view.textContainer.lineFragmentPadding = 20
@@ -93,25 +96,16 @@ class AddExerciseViewController: UIViewController, UINavigationControllerDelegat
         button.setTitleColor(.highlightYellow, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 18)
         button.layer.borderWidth = 3
+        button.layer.cornerRadius = 8
         button.layer.borderColor = UIColor.highlightYellow.cgColor
         button.clipsToBounds = true
         return button
     }()
     
-    @objc
-    private func addExercise() {
-        guard let name = exerciseNameTextField.text, let notes = exerciseNotesTextView.text, let image = exerciseImageView.image else { return }
-        viewModel.addExercise(name: name, notes: notes, imageData: image.pngData())
-    }
-    
-    @objc
-    private func cancel() {
-//        viewModel.cancel()
-    }
-
     init(viewModel: AddExerciseViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        self.viewModel.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -120,17 +114,23 @@ class AddExerciseViewController: UIViewController, UINavigationControllerDelegat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        definesPresentationContext = true
         setup()
+    }
+
+    @objc
+    private func addExercise() {
+        guard let name = exerciseNameTextField.text, let notes = exerciseNotesTextView.text, let image = exerciseImageView.image else { return }
+        viewModel.addExercise(name: name, notes: notes, imageData: image.pngData())
+    }
+    
+    @objc
+    private func cancel() {
+        viewModel.cancel()
     }
     
     @objc func selectImage() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
-        imagePickerController.allowsEditing = true
-        
-        // TODO: Encapsulate in viewmodel
-        self.present(imagePickerController, animated: true)
+        viewModel.presentImagePicker()
     }
 }
 
@@ -208,22 +208,13 @@ extension AddExerciseViewController: ViewCodable {
         titleLabel.text = "Adicionar Exercício"
         addButton.addTarget(self, action: #selector(addExercise), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+        exerciseNotesTextView.delegate = self
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage))
         exerciseImageView.isUserInteractionEnabled = true
         exerciseImageView.addGestureRecognizer(gestureRecognizer)
     }
 
-}
-
-extension AddExerciseViewController: UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
-        exerciseImageView.image = image
-
-        // TODO: Encapsulate in viewmodel
-        self.dismiss(animated: true, completion: nil)
-    }
 }
 
 extension AddExerciseViewController: UITextViewDelegate {
@@ -239,6 +230,15 @@ extension AddExerciseViewController: UITextViewDelegate {
             textView.text = "Notas"
             textView.textColor = UIColor.highlightYellow
         }
+    }
+
+}
+
+extension AddExerciseViewController: AddExerciseViewModelDelegate {
+
+    internal func didSelectImage(_ image: UIImage) {
+        exerciseImageView.contentMode = .scaleAspectFill
+        exerciseImageView.image = image
     }
 
 }

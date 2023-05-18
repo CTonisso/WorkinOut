@@ -11,7 +11,7 @@ import UIKit
 extension UIImageView {
 
     public func imageFromUrl(_ url: URL?) {
-        self.image = UIImage.gifImageWithName("loading")
+//        self.image = UIImage.gifImageWithName("loading")
         if let url = url {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data, error == nil else {

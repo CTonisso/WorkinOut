@@ -32,6 +32,7 @@ class ExerciseCollectionViewCell: UICollectionViewCell {
         view.backgroundColor = .highlightYellow
         return view
     }()
+
     private let nameLabel: UILabel = {
         let view = UILabel()
         view.textAlignment = .center
@@ -41,7 +42,6 @@ class ExerciseCollectionViewCell: UICollectionViewCell {
         return view
     }()
 
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -59,14 +59,14 @@ class ExerciseCollectionViewCell: UICollectionViewCell {
 }
 
 extension ExerciseCollectionViewCell: ViewCodable {
-    func buildHierarchy() {
+    internal func buildHierarchy() {
         contentView.addSubview(cellBackgroundView)
         cellBackgroundView.addSubview(exerciseImageView)
         cellBackgroundView.addSubview(separationView)
         cellBackgroundView.addSubview(nameLabel)
     }
     
-    func buildConstraints() {
+    internal func buildConstraints() {
         cellBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             cellBackgroundView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4),
@@ -99,11 +99,10 @@ extension ExerciseCollectionViewCell: ViewCodable {
         ])
     }
     
-    func setupUI() {
+    internal func setupUI() {
         backgroundView?.backgroundColor = .clear
         contentView.backgroundColor = .clear
         backgroundColor = .clear
     }
     
 }
-
