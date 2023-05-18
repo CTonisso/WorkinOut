@@ -10,22 +10,20 @@ import FirebaseFirestore
 import Foundation
 import UIKit
 
-class ExerciseCoordinator: Coordinator {
+class ExerciseCoordinator: Coordinator, UINavigationControllerDelegate {
 
-    weak var parentCoordinator: Coordinator?
-    var children: [Coordinator] = []
-    var navigationController: UINavigationController
-    var shouldUpdate: ((_: Bool) -> Void)?
+    private var shouldUpdate: ((_: Bool) -> Void)?
+    private var updateWithImage: ((_: UIImage) -> Void)?
     
     private let storage = Storage.storage()
     private let firestoreDatabase: Firestore
 
-    init(_ navigationController: UINavigationController = UINavigationController()) {
-        self.navigationController = navigationController
+    override internal init(_ navigationController: UINavigationController = UINavigationController()) {
         self.firestoreDatabase = Firestore.firestore()
+        super.init(navigationController)
     }
 
-    func start() {
+    override internal func start() {
         navigationController.setViewControllers([ExercisesViewController(viewModel: ExercisesViewModel(self))], animated: true)
         NavBarUtils.configureNavigationBar(for: navigationController)
     }
@@ -36,9 +34,36 @@ class ExerciseCoordinator: Coordinator {
         navigationController.present(AddExerciseViewController(viewModel: viewModel), animated: true)
     }
 
+    func presentImagePicker(_ completion: @escaping ((_: UIImage) -> Void)) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePickerController.allowsEditing = true
+        updateWithImage = completion
+
+        navigationController.present(imagePickerController, animated: true)
+    }
+
     func pop() {
         navigationController.popViewController(animated: true)
     }
 
+    func dismiss(shouldUpdateParent: Bool = false) {
+        navigationController.dismiss(animated: true) { [weak self] in
+            // TODO: Passar no init
+            self?.shouldUpdate?(shouldUpdateParent)
+        }
+    }
+
 }
 
+extension ExerciseCoordinator: UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+        self.updateWithImage?(image)
+
+        navigationController.dismiss(animated: true, completion: nil)
+    }
+
+}

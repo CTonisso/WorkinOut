@@ -10,11 +10,7 @@ import UIKit
 
 class TabBarCoordinator : Coordinator {
     
-    weak var parentCoordinator: Coordinator?
-    var children: [Coordinator] = []
-    var navigationController: UINavigationController
-    
-    func start() {
+    override internal func start() {
         print("Tabbar Coordinator Init")
         initializeHomeTabBar()
     }
@@ -60,10 +56,6 @@ class TabBarCoordinator : Coordinator {
         
         workoutsCoordinator.start()
         exerciseCoordinator.start()
-    }
-    
-    init(navigationController : UINavigationController) {
-        self.navigationController = navigationController
     }
     
 }

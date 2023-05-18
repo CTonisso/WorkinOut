@@ -8,26 +8,30 @@
 import Foundation
 import UIKit
 
-protocol Coordinator: AnyObject {
-    var parentCoordinator: Coordinator? { get set }
-    var children: [Coordinator] { get set }
-    var navigationController: UINavigationController { get set }
+class Coordinator: NSObject {
 
-    func start()
+    internal var parentCoordinator: Coordinator?
+    internal var children: [Coordinator] = []
+    internal var navigationController: UINavigationController
+
+    public init(_ navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+
+    internal func start() {
+        preconditionFailure("This method needs to be overriden by concrete subclass.")
+    }
+
 }
 
 class AppCoordinator: Coordinator {
 
-    var parentCoordinator: Coordinator?
-    var children: [Coordinator] = []
-    var navigationController: UINavigationController
+//    var parentCoordinator: Coordinator?
+//    var children: [Coordinator] = []
+//    var navigationController: UINavigationController
     private let defaults = UserDefaults.standard
 
-    init(_ navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-
-    func start() {
+    override internal func start() {
         if defaults.bool(forKey: "isLoggedIn") {
             navigationController.navigationBar.isHidden = true
             let coordinator = TabBarCoordinator(navigationController: navigationController)

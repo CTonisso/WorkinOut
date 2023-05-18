@@ -10,17 +10,9 @@ import UIKit
 
 class AuthCoordinator: Coordinator {
 
-    weak var parentCoordinator: Coordinator?
-    var children: [Coordinator] = []
-    var navigationController: UINavigationController
-    var shouldUpdate: ((_: Bool) -> Void)?
     private let defaults = UserDefaults.standard
 
-    init(_ navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-
-    func start() {
+    override internal func start() {
         navigationController.setViewControllers([LoginViewController(viewModel: LoginViewModel(self))], animated: true)
     }
 

@@ -10,16 +10,9 @@ import UIKit
 
 class WorkoutsCoordinator: Coordinator {
 
-    weak var parentCoordinator: Coordinator?
-    var children: [Coordinator] = []
-    var navigationController: UINavigationController
     var shouldUpdate: ((_: Bool) -> Void)?
 
-    init(_ navigationController: UINavigationController) {
-        self.navigationController = navigationController
-    }
-
-    func start() {
+    override internal func start() {
         navigationController.setViewControllers([WorkoutsViewController(viewModel: WorkoutsViewModel(self))], animated: true)
         NavBarUtils.configureNavigationBar(for: navigationController)
     }
