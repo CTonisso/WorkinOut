@@ -6,34 +6,42 @@
 //
 
 import Foundation
-protocol ExercisesViewModelDelegate: AnyObject {
+internal protocol ExercisesViewModelDelegate: AnyObject {
     func didFetchExercises()
 }
 
-class ExercisesViewModel {
+internal class ExercisesViewModel {
 
-    weak var coordinator: ExerciseCoordinator?
-    weak var delegate: ExercisesViewModelDelegate?
-    private var exercises: [Exercise] = []
+    private weak var coordinator: ExerciseCoordinator?
+    private weak var delegate: ExercisesViewModelDelegate?
+    private var exercises: [Exercise] = [DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
+                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
+                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
+                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
+                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
+                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
+                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
+                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
+                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil)]
     
-    init(_ coordinator: ExerciseCoordinator) {
+    internal init(_ coordinator: ExerciseCoordinator) {
         self.coordinator = coordinator
     }
     
-    func fetchExercises() {
+    internal func fetchExercises() {
         exercises = DataManager.shared.fetchExercises()
         delegate?.didFetchExercises()
     }
 
-    func addExercise() {
+    internal func addExercise() {
         coordinator?.goToAddExercise()
     }
 
-    func exerciseAt(_ indexPath: IndexPath) -> Exercise {
+    internal func exerciseAt(_ indexPath: IndexPath) -> Exercise {
         return exercises[indexPath.row]
     }
 
-    func numberOfExercises() -> Int {
+    internal func numberOfExercises() -> Int {
         return exercises.count
     }
 

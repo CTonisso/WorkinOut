@@ -8,17 +8,22 @@
 import Foundation
 import UIKit
 
-class ExercisesViewController: UIViewController {
+internal class ExercisesViewController: UIViewController {
     
     private var viewModel: ExercisesViewModel
-    private var collectionView = UICollectionView()
+    private var collectionView: UICollectionView = {
+        let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+        view.registerWithClass(ExerciseCollectionViewCell.self)
+        view.backgroundColor = .clear
+        return view
+    }()
     
-    init(viewModel: ExercisesViewModel) {
+    internal init(viewModel: ExercisesViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
-    required init?(coder: NSCoder) {
+    internal required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -29,7 +34,7 @@ class ExercisesViewController: UIViewController {
     }
     
     @objc
-    func addExercise() {
+    private func addExercise() {
         viewModel.addExercise()
     }
 
@@ -37,11 +42,11 @@ class ExercisesViewController: UIViewController {
 
 extension ExercisesViewController: ViewCodable {
     
-    func buildHierarchy() {
+    internal func buildHierarchy() {
         view.addSubview(collectionView)
     }
     
-    func buildConstraints() {
+    internal func buildConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -52,25 +57,34 @@ extension ExercisesViewController: ViewCodable {
 
         updateViewConstraints()
     }
-    
-    func setupUI() {
+
+    internal func setupUI() {
         title = "Exercícios"
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addExercise))
         navigationItem.rightBarButtonItem?.tintColor = .highlightYellow
+        configureCollectionView()
     }
-    
+
+    internal func configureCollectionView() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: view.frame.width / 2 - 6, height: view.frame.width / 2 - 6)
+        collectionView.collectionViewLayout = layout
+    }
+
 }
 
 extension ExercisesViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    internal func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.numberOfExercises()
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+    internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ExerciseCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         cell.configureFor(viewModel.exerciseAt(indexPath))
         return cell
     }
-    
+
 }

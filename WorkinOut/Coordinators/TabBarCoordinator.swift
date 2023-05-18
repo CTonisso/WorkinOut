@@ -55,7 +55,6 @@ class TabBarCoordinator : Coordinator {
         navigationController.pushViewController(tabBarController, animated: true)
         navigationController.setNavigationBarHidden(true, animated: true)
         
-        // Add the coordinator into parent's child
         parentCoordinator?.children.append(workoutsCoordinator)
         parentCoordinator?.children.append(exerciseCoordinator)
         

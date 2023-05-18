@@ -13,7 +13,7 @@ class ExerciseCollectionViewCell: UICollectionViewCell {
     private let cellBackgroundView: UIView = {
         let view = UIView()
         view.layer.borderColor = UIColor.highlightYellow.cgColor
-        view.layer.borderWidth = 2
+        view.layer.borderWidth = 3
         view.layer.cornerRadius = 16
         view.backgroundColor = .cellGray
         return view
@@ -21,16 +21,23 @@ class ExerciseCollectionViewCell: UICollectionViewCell {
     
     private let exerciseImageView: UIImageView = {
         let view = UIImageView()
+        view.contentMode = .scaleAspectFit
+        view.backgroundColor = .clear
+        view.isOpaque = false
         return view
     }()
 
+    private let separationView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .highlightYellow
+        return view
+    }()
     private let nameLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont(name: "Avenir-Medium", size: 12)
+        view.textAlignment = .center
+        view.font = UIFont(name: "Avenir-Medium", size: 24)
         view.textColor = .highlightYellow
-        view.layer.borderColor = UIColor.highlightYellow.cgColor
-        view.layer.borderWidth = 2
-        view.clipsToBounds = true
+        view.clipsToBounds = false
         return view
     }()
 
@@ -55,6 +62,7 @@ extension ExerciseCollectionViewCell: ViewCodable {
     func buildHierarchy() {
         contentView.addSubview(cellBackgroundView)
         cellBackgroundView.addSubview(exerciseImageView)
+        cellBackgroundView.addSubview(separationView)
         cellBackgroundView.addSubview(nameLabel)
     }
     
@@ -74,11 +82,19 @@ extension ExerciseCollectionViewCell: ViewCodable {
             exerciseImageView.trailingAnchor.constraint(equalTo: cellBackgroundView.trailingAnchor)
         ])
         
+        separationView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            separationView.topAnchor.constraint(equalTo: exerciseImageView.bottomAnchor),
+            separationView.leadingAnchor.constraint(equalTo: exerciseImageView.leadingAnchor),
+            separationView.trailingAnchor.constraint(equalTo: exerciseImageView.trailingAnchor),
+            separationView.heightAnchor.constraint(equalToConstant: 3)
+        ])
+        
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: exerciseImageView.bottomAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: exerciseImageView.leadingAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: exerciseImageView.trailingAnchor),
+            nameLabel.topAnchor.constraint(equalTo: separationView.bottomAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: separationView.leadingAnchor),
+            nameLabel.trailingAnchor.constraint(equalTo: separationView.trailingAnchor),
             nameLabel.bottomAnchor.constraint(equalTo: cellBackgroundView.bottomAnchor)
         ])
     }
