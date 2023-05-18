@@ -34,7 +34,7 @@ class AppCoordinator: Coordinator {
     override internal func start() {
         if defaults.bool(forKey: "isLoggedIn") {
             navigationController.navigationBar.isHidden = true
-            let coordinator = TabBarCoordinator(navigationController: navigationController)
+            let coordinator = TabBarCoordinator(navigationController)
             children.removeAll()
             coordinator.parentCoordinator = self
             coordinator.start()
