@@ -11,9 +11,10 @@ import UIKit
 class AuthCoordinator: Coordinator {
 
     private let defaults = UserDefaults.standard
+    private let service = AuthenticationService()
 
     override internal func start() {
-        navigationController.setViewControllers([LoginViewController(viewModel: LoginViewModel(self))], animated: true)
+        navigationController.setViewControllers([LoginViewController(viewModel: LoginViewModel(self, service: service))], animated: true)
     }
 
     func goToRegister() {

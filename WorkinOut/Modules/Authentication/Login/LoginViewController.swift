@@ -125,7 +125,7 @@ class LoginViewController: UIViewController {
     }
 
     @objc func loginWithGoogle() {
-        viewModel.loginUserWithGoogle(viewController: self)
+        viewModel.loginUserWithGoogle()
     }
     
     @objc func register() {
