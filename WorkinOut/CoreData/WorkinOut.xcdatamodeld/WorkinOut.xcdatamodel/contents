@@ -5,17 +5,17 @@
         <attribute name="image" optional="YES" attributeType="URI" defaultValueString="https://i.pinimg.com/564x/f4/ee/b4/f4eeb4e832f168fb02ce12ad2f59e793.jpg"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
-        <relationship name="workout" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Workout" inverseName="exercises" inverseEntity="Workout"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Workout" inverseName="exercises" inverseEntity="Workout"/>
     </entity>
     <entity name="Workout" representedClassName="Workout" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="workoutDescription" optional="YES" attributeType="String"/>
-        <relationship name="exercises" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="workout" inverseEntity="Exercise"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="workout" inverseEntity="Exercise"/>
     </entity>
     <elements>
-        <element name="Exercise" positionX="-18" positionY="27" width="128" height="104"/>
-        <element name="Workout" positionX="-45" positionY="0" width="128" height="104"/>
+        <element name="Exercise" positionX="-366.3599853515625" positionY="0.2978515625" width="128" height="118"/>
+        <element name="Workout" positionX="-45" positionY="0" width="128" height="118"/>
     </elements>
 </model>

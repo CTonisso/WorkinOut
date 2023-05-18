@@ -205,6 +205,7 @@ extension LoginViewController: ViewCodable {
             registerButton.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
             registerButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
         ])
+        registerButton.layer.cornerRadius = 8
         
         divisionLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

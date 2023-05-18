@@ -31,8 +31,11 @@ class WorkoutsCoordinator: Coordinator {
         navigationController.pushViewController(WorkoutDetailsViewController(viewModel: WorkoutDetailsViewModel(self, workout: workout)), animated: true)
     }
     
-    func addExerciseToWorkout(_ workout: Workout, _ completion: @escaping () -> Void) {
-        let coordinator = ExerciseCoordinator(navigationController)
+    func addExerciseToWorkout(_ workout: Workout, _ completion: @escaping (_: DetailedExercise) -> Void) {
+        let coordinator = ExerciseCoordinator(navigationController) { exercise in
+            completion(exercise)
+            self.children.removeAll()
+        }
         coordinator.parentCoordinator = self
         children.append(coordinator)
         coordinator.start()

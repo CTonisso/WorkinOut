@@ -2,7 +2,7 @@
 //  Exercise+CoreDataClass.swift
 //  WorkinOut
 //
-//  Created by Carlos Marcelo Tonisso Junior on 15/05/23.
+//  Created by Carlos Marcelo Tonisso Junior on 18/05/23.
 //
 //
 

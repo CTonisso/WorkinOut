@@ -47,15 +47,14 @@ class DataManager {
         return workout
     }
 
-    func createExercise(name: String, image: URL, notes: String, workout: Workout?) -> Exercise {
+    func createExercise(id: UUID, name: String, image: URL, notes: String, workout: Workout) -> Exercise {
         let exercise = Exercise(context: persistentContainer.viewContext)
-        exercise.id = UUID()
+        exercise.id = id
         exercise.name = name
         exercise.image = image
         exercise.notes = notes
-        if let unwrapedWorkout = workout {
-            exercise.addToWorkout(unwrapedWorkout)
-        }
+        workout.addToExercises(exercise)
+        save()
         return exercise
     }
 
@@ -77,7 +76,7 @@ class DataManager {
         return fetchedWorkouts
     }
 
-    func fetchExercises(_ workout: Workout? = nil) -> [Exercise] {
+    func fetchExercises(for workout: Workout? = nil) -> [Exercise] {
         let request: NSFetchRequest<Exercise> = Exercise.fetchRequest()
         if let unwrapedWorkout = workout {
             request.predicate = NSPredicate(format: "workout = %@", unwrapedWorkout)
@@ -97,6 +96,7 @@ class DataManager {
     func clearContext() {
         let context = persistentContainer.viewContext
         context.reset()
+        save()
     }
 
     func deleteWorkout(_ workout: Workout) {

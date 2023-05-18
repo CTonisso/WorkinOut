@@ -37,6 +37,10 @@ internal class ExercisesViewModel {
         }
     }
 
+    internal func selectedExerciseAt(_ indexPath: IndexPath) {
+        coordinator?.dismiss(with: exercises[indexPath.row])
+    }
+
     internal func exerciseAt(_ indexPath: IndexPath) -> DetailedExercise {
         return exercises[indexPath.row]
     }

@@ -12,7 +12,13 @@ class ExerciseCoordinator: Coordinator, UINavigationControllerDelegate {
 
     private var shouldUpdate: ((_: Bool) -> Void)?
     private var updateWithImage: ((_: UIImage) -> Void)?
+    private var completion: ((_: DetailedExercise) -> Void)?
     private let service = FirebaseDataService()
+
+    public init(_ navigationController: UINavigationController, _ expecting: ((_: DetailedExercise) -> Void)? = nil) {
+        super.init(navigationController)
+        completion = expecting
+    }
 
     override internal func start() {
         goToMainExercises()
@@ -20,7 +26,7 @@ class ExerciseCoordinator: Coordinator, UINavigationControllerDelegate {
 
     func goToMainExercises() {
         guard let parentCoordinator = parentCoordinator else { return }
-        if parentCoordinator.isKind(of: WorkoutsCoordinator.self) {
+        if parentCoordinator.isKind(of: WorkoutsCoordinator.self) && completion != nil {
             let viewModel = ExercisesViewModel(self, service: service)
             navigationController.present(ExercisesViewController(viewModel: viewModel), animated: true)
         } else {
@@ -54,6 +60,13 @@ class ExerciseCoordinator: Coordinator, UINavigationControllerDelegate {
         navigationController.dismiss(animated: true) { [weak self] in
             // TODO: Passar no init
             self?.shouldUpdate?(shouldUpdateParent)
+        }
+    }
+
+    func dismiss(with exerciseSelected: DetailedExercise) {
+        navigationController.dismiss(animated: true) { [weak self] in
+            self?.completion?(exerciseSelected)
+            self?.parentCoordinator = nil
         }
     }
 

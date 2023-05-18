@@ -46,6 +46,7 @@ class WorkoutDetailsViewController: UIViewController {
         button.backgroundColor = .highlightYellow
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 18)
+        button.layer.cornerRadius = 8
         button.clipsToBounds = true
         return button
     }()
@@ -53,6 +54,7 @@ class WorkoutDetailsViewController: UIViewController {
     private let exercisesTableView: UITableView = {
         let view = UITableView()
         view.backgroundColor = .clear
+        view.registerWithClass(ExerciseInWorkoutTableViewCell.self)
         return view
     }()
     
@@ -71,6 +73,7 @@ class WorkoutDetailsViewController: UIViewController {
         setup()
         viewModel.delegate = self
         viewModel.getCurrentWorkout()
+        viewModel.fetchExercises()
     }
 
     @objc
@@ -114,6 +117,7 @@ extension WorkoutDetailsViewController: ViewCodable {
 
         addExerciseButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            addExerciseButton.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: 4),
             addExerciseButton.heightAnchor.constraint(equalToConstant: 40),
             addExerciseButton.leadingAnchor.constraint(equalTo: dateLabel.leadingAnchor),
             addExerciseButton.trailingAnchor.constraint(equalTo: dateLabel.trailingAnchor)
@@ -152,12 +156,16 @@ extension WorkoutDetailsViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // TODO: Automatic dimension
-        return 100
+        return 60
     }
 
 }
 
 extension WorkoutDetailsViewController: WorkoutDetailsViewModelDelegate {
+
+    func updateTableView() {
+        exercisesTableView.reloadData()
+    }
 
     func updateViewWith(_ workout: Workout) {
         nameLabel.text = workout.name

@@ -89,6 +89,10 @@ extension ExercisesViewController: UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
 
+    internal func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.selectedExerciseAt(indexPath)
+    }
+
 }
 
 extension ExercisesViewController: ExercisesViewModelDelegate {

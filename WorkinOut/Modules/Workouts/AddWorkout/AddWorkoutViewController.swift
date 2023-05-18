@@ -99,6 +99,7 @@ class AddWorkoutViewController: UIViewController {
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 18)
         button.layer.borderWidth = 3
         button.layer.borderColor = UIColor.highlightYellow.cgColor
+        button.layer.cornerRadius = 8
         button.clipsToBounds = true
         return button
     }()
