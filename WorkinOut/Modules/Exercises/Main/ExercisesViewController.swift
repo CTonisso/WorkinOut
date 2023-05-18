@@ -30,6 +30,8 @@ internal class ExercisesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .darkGray
+        viewModel.delegate = self
+        viewModel.fetchExercises()
         setup()
     }
     
@@ -85,6 +87,14 @@ extension ExercisesViewController: UICollectionViewDelegate, UICollectionViewDat
         let cell: ExerciseCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         cell.configureFor(viewModel.exerciseAt(indexPath))
         return cell
+    }
+
+}
+
+extension ExercisesViewController: ExercisesViewModelDelegate {
+
+    func didFetchExercises() {
+        collectionView.reloadData()
     }
 
 }

@@ -18,8 +18,8 @@ class AddExerciseViewModel {
         self.service = service
     }
 
-    internal func addExercise(name: String, notes: String, imageData: Data?) {
-        service.uploadExercise(name: name, notes: notes, imageData: imageData) {
+    internal func addExercise(name: String, description: String, imageData: Data?) {
+        service.uploadExercise(name: name, description: description, imageData: imageData) {
             self.coordinator?.dismiss(shouldUpdateParent: true)
         }
     }

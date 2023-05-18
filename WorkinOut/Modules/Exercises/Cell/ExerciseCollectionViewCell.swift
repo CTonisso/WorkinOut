@@ -21,7 +21,7 @@ class ExerciseCollectionViewCell: UICollectionViewCell {
     
     private let exerciseImageView: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFill
         view.backgroundColor = .clear
         view.isOpaque = false
         return view
@@ -51,9 +51,9 @@ class ExerciseCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureFor(_ exercise: Exercise) {
+    func configureFor(_ exercise: DetailedExercise) {
         nameLabel.text = exercise.name
-        exerciseImageView.imageFromUrl(exercise.image)
+        exerciseImageView.imageFromUrl(exercise.imageURL)
     }
 
 }

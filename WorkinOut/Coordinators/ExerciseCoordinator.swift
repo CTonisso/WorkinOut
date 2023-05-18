@@ -5,8 +5,6 @@
 //  Created by Carlos Marcelo Tonisso Junior on 16/05/23.
 //
 
-import FirebaseStorage
-import FirebaseFirestore
 import Foundation
 import UIKit
 
@@ -14,20 +12,18 @@ class ExerciseCoordinator: Coordinator, UINavigationControllerDelegate {
 
     private var shouldUpdate: ((_: Bool) -> Void)?
     private var updateWithImage: ((_: UIImage) -> Void)?
-
-    override internal init(_ navigationController: UINavigationController = UINavigationController()) {
-        
-        super.init(navigationController)
-    }
+    private let service = FirebaseDataService()
 
     override internal func start() {
-        navigationController.setViewControllers([ExercisesViewController(viewModel: ExercisesViewModel(self))], animated: true)
+        let viewModel = ExercisesViewModel(self, service: service)
+        navigationController.setViewControllers([ExercisesViewController(viewModel: viewModel)], animated: true)
         NavBarUtils.configureNavigationBar(for: navigationController)
     }
 
-    func goToAddExercise() {
+    func goToAddExercise(completion: ((_: Bool) -> Void)? = nil) {
         let viewModel = AddExerciseViewModel(self, service: FirebaseDataService())
         navigationController.present(AddExerciseViewController(viewModel: viewModel), animated: true)
+        shouldUpdate = completion
     }
 
     func presentImagePicker(_ completion: @escaping ((_: UIImage) -> Void)) {

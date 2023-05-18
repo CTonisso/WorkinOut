@@ -48,6 +48,7 @@
 		48422B592A15992F00C62244 /* UIImageView+ImageFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48422B582A15992F00C62244 /* UIImageView+ImageFromURL.swift */; };
 		48422B5B2A159B8300C62244 /* GIF-Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48422B5A2A159B8300C62244 /* GIF-Swift.swift */; };
 		48422B5E2A16464D00C62244 /* FirebaseDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48422B5D2A16464C00C62244 /* FirebaseDataService.swift */; };
+		48422B612A164B6000C62244 /* DetailedExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48422B602A164B6000C62244 /* DetailedExercise.swift */; };
 		48C1B0492A107C1600904969 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B0482A107C1600904969 /* AppDelegate.swift */; };
 		48C1B04D2A107C1600904969 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B04C2A107C1600904969 /* ViewController.swift */; };
 		48C1B0532A107C1600904969 /* WorkinOut.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 48C1B0512A107C1600904969 /* WorkinOut.xcdatamodeld */; };
@@ -110,6 +111,7 @@
 		48422B582A15992F00C62244 /* UIImageView+ImageFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageFromURL.swift"; sourceTree = "<group>"; };
 		48422B5A2A159B8300C62244 /* GIF-Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GIF-Swift.swift"; sourceTree = "<group>"; };
 		48422B5D2A16464C00C62244 /* FirebaseDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDataService.swift; sourceTree = "<group>"; };
+		48422B602A164B6000C62244 /* DetailedExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedExercise.swift; sourceTree = "<group>"; };
 		48C1B0452A107C1600904969 /* WorkinOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkinOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48C1B0482A107C1600904969 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48C1B04C2A107C1600904969 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -340,6 +342,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		48422B5F2A164B5400C62244 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				48422B602A164B6000C62244 /* DetailedExercise.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		48C1B03C2A107C1600904969 = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +374,7 @@
 		48C1B0472A107C1600904969 /* WorkinOut */ = {
 			isa = PBXGroup;
 			children = (
+				48422B5F2A164B5400C62244 /* Model */,
 				48422B5C2A16462600C62244 /* Services */,
 				4807287E2A13F0F600C31B04 /* Coordinators */,
 				4807284E2A129B1500C31B04 /* Utils */,
@@ -576,6 +587,7 @@
 				480728802A13F13F00C31B04 /* AuthCoordinator.swift in Sources */,
 				4807286D2A13A26800C31B04 /* UITableView+Helpers.swift in Sources */,
 				480728542A12A35C00C31B04 /* ViewCodable.swift in Sources */,
+				48422B612A164B6000C62244 /* DetailedExercise.swift in Sources */,
 				480728292A12511D00C31B04 /* Exercise+CoreDataClass.swift in Sources */,
 				48C1B04D2A107C1600904969 /* ViewController.swift in Sources */,
 				48422B5E2A16464D00C62244 /* FirebaseDataService.swift in Sources */,

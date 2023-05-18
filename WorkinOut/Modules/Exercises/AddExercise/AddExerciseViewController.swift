@@ -61,13 +61,13 @@ class AddExerciseViewController: UIViewController, UINavigationControllerDelegat
         return view
     }()
     
-    private let exerciseNotesTextView: UITextView = {
+    private let exerciseDescriptionTextView: UITextView = {
         let view = UITextView()
         view.backgroundColor = .clear
         view.layer.borderColor = UIColor.highlightYellow.cgColor
         view.layer.borderWidth = 3
         view.font = UIFont(name: "Avenir-Book", size: 16)
-        view.text = "Notas"
+        view.text = "Descrição"
         view.textColor = .highlightYellow
         view.keyboardType = .default
         view.textContainer.lineFragmentPadding = 20
@@ -124,8 +124,8 @@ class AddExerciseViewController: UIViewController, UINavigationControllerDelegat
 
     @objc
     private func addExercise() {
-        guard let name = exerciseNameTextField.text, let notes = exerciseNotesTextView.text, let image = exerciseImageView.image else { return }
-        viewModel.addExercise(name: name, notes: notes, imageData: image.pngData())
+        guard let name = exerciseNameTextField.text, let description = exerciseDescriptionTextView.text, let image = exerciseImageView.image else { return }
+        viewModel.addExercise(name: name, description: description, imageData: image.pngData())
     }
     
     @objc
@@ -145,7 +145,7 @@ extension AddExerciseViewController: ViewCodable {
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(exerciseImageView)
         stackView.addArrangedSubview(exerciseNameTextField)
-        stackView.addArrangedSubview(exerciseNotesTextView)
+        stackView.addArrangedSubview(exerciseDescriptionTextView)
         buttonsContainerView.addSubview(addButton)
         buttonsContainerView.addSubview(cancelButton)
         stackView.addArrangedSubview(buttonsContainerView)
@@ -181,11 +181,11 @@ extension AddExerciseViewController: ViewCodable {
             exerciseNameTextField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
         ])
         
-        exerciseNotesTextView.translatesAutoresizingMaskIntoConstraints = false
+        exerciseDescriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            exerciseNotesTextView.heightAnchor.constraint(equalToConstant: 256),
-            exerciseNotesTextView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            exerciseNotesTextView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
+            exerciseDescriptionTextView.heightAnchor.constraint(equalToConstant: 256),
+            exerciseDescriptionTextView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            exerciseDescriptionTextView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
         ])
         
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
@@ -212,7 +212,7 @@ extension AddExerciseViewController: ViewCodable {
         titleLabel.text = "Adicionar Exercício"
         addButton.addTarget(self, action: #selector(addExercise), for: .touchUpInside)
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
-        exerciseNotesTextView.delegate = self
+        exerciseDescriptionTextView.delegate = self
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectImage))
         exerciseImageView.isUserInteractionEnabled = true
@@ -224,14 +224,14 @@ extension AddExerciseViewController: ViewCodable {
 extension AddExerciseViewController: UITextViewDelegate {
     
     internal func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.text == "Notas" {
+        if textView.text == "Descrição" {
             textView.text = nil
         }
     }
 
     internal func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Notas"
+            textView.text = "Descrição"
             textView.textColor = UIColor.highlightYellow
         }
     }

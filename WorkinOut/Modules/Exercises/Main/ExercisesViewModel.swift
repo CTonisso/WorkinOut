@@ -13,31 +13,32 @@ internal protocol ExercisesViewModelDelegate: AnyObject {
 internal class ExercisesViewModel {
 
     private weak var coordinator: ExerciseCoordinator?
-    private weak var delegate: ExercisesViewModelDelegate?
-    private var exercises: [Exercise] = [DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
-                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
-                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
-                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
-                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
-                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
-                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
-                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil),
-                                         DataManager.shared.createExercise(name: "Flexão", image: URL(string: "https://png.pngtree.com/png-clipart/20190618/original/pngtree-push-ups-fitness-fitness-man-the-man-png-image_3922517.jpg")!, notes: "", workout: nil)]
+    internal weak var delegate: ExercisesViewModelDelegate?
+    private var exercises: [DetailedExercise] = []
+    private let service: FirebaseDataService
     
-    internal init(_ coordinator: ExerciseCoordinator) {
+    internal init(_ coordinator: ExerciseCoordinator, service: FirebaseDataService) {
         self.coordinator = coordinator
+        self.service = service
     }
     
     internal func fetchExercises() {
-        exercises = DataManager.shared.fetchExercises()
-        delegate?.didFetchExercises()
+        service.getExercises { [weak self] exercises in
+            self?.exercises = exercises
+            self?.delegate?.didFetchExercises()
+        }
+        
     }
 
     internal func addExercise() {
-        coordinator?.goToAddExercise()
+        coordinator?.goToAddExercise() { update in
+            if update {
+                self.fetchExercises()
+            }
+        }
     }
 
-    internal func exerciseAt(_ indexPath: IndexPath) -> Exercise {
+    internal func exerciseAt(_ indexPath: IndexPath) -> DetailedExercise {
         return exercises[indexPath.row]
     }
 

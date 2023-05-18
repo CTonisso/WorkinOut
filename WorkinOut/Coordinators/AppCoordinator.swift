@@ -26,9 +26,6 @@ class Coordinator: NSObject {
 
 class AppCoordinator: Coordinator {
 
-//    var parentCoordinator: Coordinator?
-//    var children: [Coordinator] = []
-//    var navigationController: UINavigationController
     private let defaults = UserDefaults.standard
 
     override internal func start() {

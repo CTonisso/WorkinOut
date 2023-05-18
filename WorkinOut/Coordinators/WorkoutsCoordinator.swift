@@ -32,7 +32,6 @@ class WorkoutsCoordinator: Coordinator {
 
     func dismiss(shouldUpdateParent: Bool = false) {
         navigationController.dismiss(animated: true) { [weak self] in
-            // TODO: Passar no init
             self?.shouldUpdate?(shouldUpdateParent)
         }
     }
