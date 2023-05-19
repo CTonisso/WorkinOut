@@ -18,7 +18,9 @@ class AuthCoordinator: Coordinator {
     }
 
     func goToRegister() {
-        // TODO
+        navigationController.navigationBar.tintColor = .highlightYellow
+        let viewModel = RegisterViewModel(self, service: service)
+        navigationController.pushViewController(RegisterViewController(viewModel: viewModel), animated: true)
     }
 
     func login() {

@@ -16,7 +16,7 @@ class DataManager {
         let container = NSPersistentContainer(name: "WorkinOut")
         container.loadPersistentStores { storeDescription, error in
             if let error = error as NSError? {
-                // TODO: Implement crashlytics
+                // TODO: Implement user feedback
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
@@ -30,7 +30,7 @@ class DataManager {
             do {
                 try context.save()
             } catch {
-                // TODO: Implement crashlytics
+                // TODO: Implement user feedback
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
@@ -69,7 +69,7 @@ class DataManager {
         do {
             fetchedWorkouts = try persistentContainer.viewContext.fetch(request)
         } catch let error {
-            // TODO Implement crashlytics
+            // TODO Implement user feedback
             print("Error fetching workouts \(error)")
         }
         
@@ -86,7 +86,7 @@ class DataManager {
         do {
             fetchedExercises = try persistentContainer.viewContext.fetch(request)
         } catch let error {
-            // TODO Implement crashlytics
+            // TODO Implement user feedback
             print("Error fetching exercises \(error)")
         }
         

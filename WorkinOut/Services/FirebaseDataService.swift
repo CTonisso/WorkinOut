@@ -33,7 +33,7 @@ internal class FirebaseDataService {
         
         firestoreReference.getDocuments { querySnapshot, error in
             if let error = error {
-                // TODO: Implement crashlytics
+                // TODO: Implement user feedback
             } else {
                 for document in querySnapshot!.documents {
                     let exercise = DetailedExercise(id: UUID(uuidString: document.documentID)!, parameters: document.data())
@@ -49,12 +49,12 @@ internal class FirebaseDataService {
         let storageReference = storage.reference().child("exercise_images").child(UUID().uuidString)
         storageReference.putData(imageData, metadata: nil) { (metadata, error) in
             guard error == nil else {
-                      //TODO: Implement crashlytics
+                      //TODO: Implement user feedback
                       return
                   }
             storageReference.downloadURL { url, error in
                 guard let url = url, error == nil else {
-                    //TODO: Implement crashlytics
+                    //TODO: Implement user feedback
                     return
                 }
                 completion(url)
@@ -74,7 +74,7 @@ internal class FirebaseDataService {
 
         firestoreReference.document(exercise.id.uuidString).setData(docData) { error in
             guard error == nil else {
-                // TODO: Implement crashlytics
+                // TODO: Implement user feedback
                 return
             }
             completion()

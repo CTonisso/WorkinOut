@@ -103,7 +103,6 @@ class LoginViewController: UIViewController {
         return view
     }()
     
-
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)

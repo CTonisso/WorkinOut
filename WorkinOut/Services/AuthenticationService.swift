@@ -28,20 +28,20 @@ internal final class AuthenticationService {
     
     internal func loginUserWithGoogle(viewController: UIViewController?, _ completion: @escaping (Bool) -> Void) {
         guard let viewController = viewController else {
-            // TODO: Implement Crashlytics
+            // TODO: Implement user feedback
             return
         }
 
         GIDSignIn.sharedInstance.signIn(withPresenting: viewController) { result, error in
-            guard error == nil else {
-                // TODO: Implement Crashlytics
+            guard error != nil else {
+                // TODO: Implement user feedback
                 completion(false)
                 return
             }
 
             guard let user = result?.user,
                   let idToken = user.idToken?.tokenString else {
-                      // TODO: Implement Crashlytics
+                      // TODO: Implement user feedback
                       completion(false)
                       return
                   }
@@ -53,6 +53,19 @@ internal final class AuthenticationService {
                 completion(true)
                 // TODO: Implement user persistency
             }
+        }
+    }
+
+    internal func register(withEmail email: String, password: String, _ completion: @escaping (Bool) -> Void) {
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            guard error != nil else {
+                // TODO: Implement user feedback
+                completion(false)
+                return
+            }
+            
+            // TODO: Persist user data and login inside this method
+            self.loginUserWithEmail(email: email, password: password, completion)
         }
     }
 }
